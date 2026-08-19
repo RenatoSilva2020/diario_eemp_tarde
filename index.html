@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diário de Classe Digital</title>
   <style>
-    /* ==========================================================================
-       VARIÁVEIS GERAIS
-       ========================================================================== */
     :root {
       --bg-color: #f1f5f9; 
       --card-bg: #ffffff;
@@ -32,9 +29,6 @@
       --radius-sm: 12px;
     }
     
-    /* ==========================================================================
-       ESTILOS BASE
-       ========================================================================== */
     body { 
       font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; 
       background-color: var(--bg-color); 
@@ -44,10 +38,7 @@
       line-height: 1.5;
     }
     
-    .card { 
-      max-width: 960px; 
-      margin: 0 auto; 
-    }
+    .card { max-width: 960px; margin: 0 auto; }
     
     .tela-branca { 
       background: var(--card-bg); 
@@ -58,9 +49,6 @@
       margin-bottom: 24px;
     }
     
-    /* ==========================================================================
-       TELA DE LOGIN & NAVEGAÇÃO
-       ========================================================================== */
     #tela-login { 
       max-width: 420px; 
       margin: 40px auto; 
@@ -190,9 +178,6 @@
       letter-spacing: 0.6px;
     }
     
-    /* ==========================================================================
-       INPUTS & BOTÕES GERAIS
-       ========================================================================== */
     .login-input-group input, input[type="date"], input[type="text"], select { 
       width: 100%; 
       box-sizing: border-box; 
@@ -261,9 +246,6 @@
       box-shadow: var(--shadow-md);
     }
 
-    /* ==========================================================================
-       PAINEL E ELEMENTOS VISUAIS
-       ========================================================================== */
     .header-painel { 
       display: flex; 
       justify-content: space-between; 
@@ -410,23 +392,101 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .mini-spinner {
-      width: 10px;
-      height: 10px;
-      border: 2px solid var(--brand-color);
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      flex-shrink: 0;
+    
+    /* Barra de progresso para o carregamento do status das turmas (Secretaria e Supervisão) */
+    .status-progress-wrapper {
+      margin-top: 8px;
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    .status-progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .status-progress-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--brand-color);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-progress-track {
+      width: 100%;
+      height: 4px;
+      background-color: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+    .status-progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, var(--brand-color), #a855f7);
+      border-radius: 9999px;
+      animation: progress-indeterminate 1.4s ease-in-out infinite;
     }
 
-    /* ==========================================================================
-       INDICADORES DE CARREGAMENTO & CABEÇALHOS DE ÁREA
-       ========================================================================== */
-    #loading-inline { text-align: center; padding: 40px; display: none; }
-    .spinner { width: 44px; height: 44px; border: 4px solid var(--border-color); border-top: 4px solid var(--brand-color); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .loading-text { color: var(--secondary-text); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;}
+    #loading-inline { 
+      text-align: center; 
+      padding: 40px 24px; 
+      display: none; 
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    
+    .loading-text { 
+      color: var(--primary-text); 
+      font-weight: 700; 
+      font-size: 13px; 
+      text-transform: uppercase; 
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .loading-subtext {
+      color: var(--secondary-text);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background-color: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+    .progress-bar-indeterminate {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, var(--brand-color), #a855f7);
+      border-radius: 9999px;
+      animation: progress-indeterminate 1.4s ease-in-out infinite;
+    }
+    @keyframes progress-indeterminate {
+      0% { left: -35%; width: 35%; }
+      50% { left: 25%; width: 55%; }
+      100% { left: 100%; width: 35%; }
+    }
 
     .header-data { display: flex; align-items: center; margin-bottom: 24px; border-bottom: 2px solid var(--border-color); padding-bottom: 20px; gap: 12px; }
     .icon-circle { background-color: var(--brand-light); color: var(--brand-color); width: 52px; height: 52px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-right: 16px; flex-shrink: 0; }
@@ -466,9 +526,6 @@
     input:checked + .slider { background-color: var(--brand-color); }
     input:checked + .slider:before { transform: translateX(20px); }
     
-    /* ==========================================================================
-       LISTAGEM DE ESTUDANTES
-       ========================================================================== */
     .list-wrapper { list-style: none; padding: 0; margin: 0; }
     .row-item { 
       display: flex; 
@@ -487,7 +544,7 @@
     }
     .row-item:nth-child(even) { background-color: #fafafa; }
     
-    .simade { color: var(--secondary-text); font-size: 12px; font-weight: 500; margin-right: 12px; width: 75px; flex-shrink: 0; letter-spacing: 0.5px; }
+    .simade { color: var(--secondary-text); font-size: 11px; font-weight: 600; letter-spacing: 0.5px; line-height: 1.2; }
     .student-name { flex: 1; min-width: 0; color: var(--primary-text); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: -0.2px; word-break: break-word; overflow-wrap: anywhere; line-height: 1.35; }
     .total-faltas { color: var(--danger-color); font-weight: 600; width: 56px; text-align: center; font-size: 16px; flex-shrink: 0; }
     
@@ -515,15 +572,12 @@
     .student-row-header { display: flex; align-items: center; justify-content: space-between; width: 100%; cursor: pointer; padding: 4px 0; gap: 12px; }
     .student-row-header:hover .student-name-text { color: var(--brand-color); }
 
-    .student-info-group { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-    .student-name-container { flex: 1; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
-    .student-name-text { color: var(--primary-text); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: -0.2px; word-break: break-word; overflow-wrap: anywhere; line-height: 1.35; }
+    .student-info-group { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; flex: 1; min-width: 0; }
+    .student-name-container { width: 100%; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .student-name-text { color: var(--primary-text); font-weight: 700; font-size: 13.5px; text-transform: uppercase; letter-spacing: -0.2px; word-break: break-word; overflow-wrap: anywhere; line-height: 1.35; }
     
     .student-stats-group .col-stat-item { font-size: 14px; font-weight: 600; }
     
-    /* ==========================================================================
-       AÇÕES & RELATÓRIOS (RESUMO DIÁRIO E MATRIZ GERAL)
-       ========================================================================== */
     .header-relatorio-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 12px; flex-wrap: wrap; }
     .stat-item-small { background: white; padding: 12px 20px; border-radius: var(--radius-sm); text-align: center; box-shadow: var(--shadow-sm); border: 2px solid var(--border-color); display: flex; flex-direction: column; min-width: 110px; }
     .stat-item-small span { font-size: 22px; font-weight: 700; color: var(--brand-color); line-height: 1;}
@@ -549,8 +603,67 @@
       letter-spacing: 0.5px;
     }
 
-    .student-row-header { display: flex; align-items: center; width: 100%; cursor: pointer; padding: 4px 0; }
-    .student-row-header:hover .student-name { color: var(--brand-color); }
+    .btn-status-toggle {
+      margin-top: 4px;
+      padding: 2px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+    .btn-status-desativar {
+      background-color: #fff1f2;
+      color: #e11d48;
+      border: 1.5px solid #fda4af;
+    }
+    .btn-status-desativar:hover {
+      background-color: #ffe4e6;
+      border-color: #fb7185;
+      color: #be123c;
+      transform: translateY(-1px);
+    }
+    .btn-status-ativar {
+      background-color: #f0fdf4;
+      color: #16a34a;
+      border: 1.5px solid #86efac;
+    }
+    .btn-status-ativar:hover {
+      background-color: #dcfce7;
+      border-color: #4ade80;
+      color: #15803d;
+      transform: translateY(-1px);
+    }
+    .btn-status-remanejar {
+      background-color: #eff6ff;
+      color: #2563eb;
+      border: 1.5px solid #bfdbfe;
+    }
+    .btn-status-remanejar:hover {
+      background-color: #dbeafe;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    .btn-status-editar {
+      background-color: #fefce8;
+      color: #ca8a04;
+      border: 1.5px solid #fef08a;
+    }
+    .btn-status-editar:hover {
+      background-color: #fef9c3;
+      border-color: #fde047;
+      color: #a16207;
+      transform: translateY(-1px);
+    }
+
     .history-panel { 
       display: none; 
       background: #f8fafc; 
@@ -597,9 +710,6 @@
     .icon-present { fill: var(--success-color); }
     .icon-absent { fill: var(--danger-color); }
 
-    /* ==========================================================================
-       MODAIS E SOBREPOSIÇÕES
-       ========================================================================== */
     .modal-overlay { 
       position: fixed; 
       top: 0; left: 0; 
@@ -627,9 +737,6 @@
     .modal-actions { display: flex; gap: 12px; }
     .modal-actions button { margin-top: 0; flex: 1; padding: 14px; width: 100%;}
     
-    /* ==========================================================================
-       RESPONSIVIDADE (ADAPTAÇÃO NATIVA PARA DISPOSITIVOS MÓVEIS)
-       ========================================================================== */
     @media (max-width: 768px) {
       body { padding: 12px 8px; }
       .tela-branca { padding: 20px 14px; }
@@ -661,9 +768,6 @@
 </head>
 <body>
 
-  <!-- ==========================================================================
-       ÍCONES SVG
-       ========================================================================== -->
   <svg style="display: none;">
     <symbol id="icon-check" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
     <symbol id="icon-cross" viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></symbol>
@@ -678,9 +782,6 @@
     <symbol id="icon-pdf" viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm12 6V9c0-.55-.45-1-1-1h-3v8h1.5v-2.5h1.5c.55 0 1-.45 1-1zm-2.5-1.5h-1v-1.5h1v1.5z"/></symbol>
   </svg>
 
-  <!-- ==========================================================================
-       MODAIS (SISTEMA)
-       ========================================================================== -->
   <aside id="custom-modal" class="modal-overlay">
     <div class="modal-box">
       <h3 id="modal-titulo">Aviso</h3>
@@ -703,7 +804,7 @@
   <aside id="modal-adicionar-estudante" class="modal-overlay">
     <div class="modal-box">
       <h3>Adicionar Estudante</h3>
-      <p style="margin-bottom: 20px;">Insira os dados do novo estudante para a turma atual. Datas e meses anteriores à matrícula serão preenchidos automaticamente com "--".</p>
+      <p style="margin-bottom: 20px;">Insira os dados do novo estudante para a turma atual.</p>
       <input type="text" id="novo-nome" placeholder="Nome Completo (Obrigatório)" style="width: 100%; margin-bottom: 14px; box-sizing: border-box;">
       <input type="text" id="novo-simade" placeholder="SIMADE (Obrigatório)" style="width: 100%; margin-bottom: 24px; box-sizing: border-box;">
       <div class="modal-actions">
@@ -713,15 +814,61 @@
     </div>
   </aside>
 
-  <!-- ==========================================================================
-       CONTEÚDO PRINCIPAL
-       ========================================================================== -->
+  <aside id="modal-remanejar-estudante" class="modal-overlay">
+    <div class="modal-box" style="max-width: 440px;">
+      <h3 style="margin-top:0;">Remanejar Estudante</h3>
+      <p style="margin-bottom: 16px; font-size: 13.5px; color: var(--secondary-text); line-height: 1.4;">
+        Transfere o estudante para uma nova turma preservando o histórico de frequências realizadas e desativa o aluno na turma atual.
+      </p>
+      <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:12px 14px; margin-bottom:18px; text-align:left;">
+        <div style="font-size:11px; font-weight:700; color:var(--secondary-text); text-transform:uppercase; letter-spacing:0.5px;">Estudante Selecionado</div>
+        <div id="remanejar-nome-display" style="font-size:14px; font-weight:700; color:var(--primary-text); margin-top:2px;"></div>
+        <div id="remanejar-simade-display" style="font-size:12px; color:var(--secondary-text); margin-top:2px;"></div>
+        <div style="margin-top:8px; font-size:12px; color:var(--secondary-text);">
+          Turma de Origem: <strong id="remanejar-origem-display" style="color:var(--brand-color);"></strong>
+        </div>
+      </div>
+      
+      <div style="text-align:left; margin-bottom:20px;">
+        <label class="selection-label" style="margin-bottom:6px;">Selecione a Turma de Destino</label>
+        <select id="select-turma-remanejar" style="width:100%;"></select>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-principal btn-secondary" onclick="fecharModalRemanejar()">Cancelar</button>
+        <button class="btn-principal" style="background-color:var(--brand-color);" onclick="confirmarRemanejarEstudante()">Confirmar Remanejamento</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside id="modal-editar-estudante" class="modal-overlay">
+    <div class="modal-box" style="max-width: 440px;">
+      <h3 style="margin-top:0;">Editar Nome do Estudante</h3>
+      <p style="margin-bottom: 16px; font-size: 13.5px; color: var(--secondary-text); line-height: 1.4;">
+        Atualize o nome completo do estudante na turma <strong><span id="editar-turma-display"></span></strong>.
+      </p>
+
+      <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:16px; text-align:left; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:12px; font-weight:600; color:var(--secondary-text); text-transform:uppercase;">SIMADE (Fixo)</span>
+        <span id="editar-simade-display" style="font-size:13px; font-weight:700; color:var(--primary-text); font-family:monospace;"></span>
+      </div>
+      
+      <div style="text-align:left; margin-bottom:20px;">
+        <label class="selection-label" style="margin-bottom:6px;">Nome Completo do Estudante</label>
+        <input type="text" id="editar-nome-input" placeholder="Nome Completo" style="width: 100%; box-sizing: border-box;">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-principal btn-secondary" onclick="fecharModalEditarEstudante()">Cancelar</button>
+        <button class="btn-principal" style="background-color:var(--brand-color);" onclick="confirmarEditarEstudante()">Salvar Alteração</button>
+      </div>
+    </div>
+  </aside>
+
   <main class="card">
-    
-    <!-- TELA 0: LOGIN -->
     <section id="tela-login" class="tela-branca">
       <div class="logo-escola">
-         <img src="https://i.ibb.co/TqLqqTbS/logo-eemp.png" alt="Portal Escolar">
+         <img id="img-logo" src="https://i.ibb.co/TqLqqTbS/logo-eemp.png" alt="Portal Escolar">
       </div>
       
       <h1>Controle de Frequência</h1>
@@ -743,9 +890,7 @@
       <div id="login-actions-dynamic"></div>
     </section>
 
-    <!-- TELA 1: PAINEL GERAL DE NAVEGAÇÃO -->
     <section id="tela-painel" style="display: none;">
-      
       <header class="header-painel">
         <h2>Painel <span id="perfil-display" class="tag-perfil">PROFESSOR</span></h2>
         <div style="display: flex; align-items: center; gap: 10px;">
@@ -758,15 +903,12 @@
         </div>
       </header>
 
-      <!-- SELEÇÃO DE TURMAS E FILTROS -->
       <div id="conteudo-selecao-turmas">
-        <!-- SELETOR DE MODO -->
         <nav class="modo-nav">
           <button class="modo-btn selected" id="modo-diario-btn" onclick="alternarModoNavegacao('diario')">📝 Chamada / Diário</button>
           <button class="modo-btn" id="modo-relatorio-btn" onclick="alternarModoNavegacao('relatorio_geral')">📊 Relatório Geral (Mês)</button>
         </nav>
 
-        <!-- FILTROS -->
         <div class="selection-group" id="bloco-data" style="display:none;">
           <span class="selection-label">Data de Referência</span>
           <input type="date" id="input-data" onchange="atualizarInterface()">
@@ -791,22 +933,40 @@
         </div>
 
         <div class="selection-group" id="bloco-turma" style="display:none;">
-          <span class="selection-label" id="label-turmas-acao">Selecione uma turma para abrir</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <span class="selection-label" id="label-turmas-acao" style="margin-bottom: 0;">Selecione uma turma para abrir</span>
+          </div>
+
+          <!-- Barra de progresso de verificação do status das chamadas (Secretaria e Supervisão) -->
+          <div id="status-turmas-progress-bar" class="status-progress-wrapper">
+            <div class="status-progress-header">
+              <span class="status-progress-label">
+                <svg style="width: 13px; height: 13px; fill: currentColor;"><use href="#icon-sync"></use></svg>
+                Verificando status das chamadas...
+              </span>
+              <span style="font-size: 11px; color: var(--secondary-text); font-weight: 500;">Consultando planilhas</span>
+            </div>
+            <div class="status-progress-track">
+              <div class="status-progress-bar"></div>
+            </div>
+          </div>
+
           <div class="grid-cards" id="grid-turma"></div>
         </div>
       </div>
       
-      <!-- ==========================================================================
-           ÁREA DE RESULTADOS DINÂMICOS
-           ========================================================================== -->
       <section id="area-resultados" style="margin-top: 24px; display: none;">
-        
         <div id="loading-inline">
-          <div class="spinner"></div>
-          <div class="loading-text">Buscando Informações...</div>
+          <div class="loading-text">
+            <span>Processando</span>
+            <span class="dot-typing" style="animation: pulse 1s infinite;">...</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-indeterminate"></div>
+          </div>
+          <div class="loading-subtext">Aguarde um momento</div>
         </div>
 
-        <!-- TELA 2: LISTA DE CHAMADA -->
         <article id="tela-chamada" class="resultado-section tela-branca" style="display:none;">
           <header class="header-data">
             <div class="icon-circle"><svg><use href="#icon-calendar"></use></svg></div>
@@ -840,7 +1000,6 @@
           </div>
         </article>
 
-        <!-- TELA 3: RELATÓRIO DA TURMA (RESUMO DIÁRIO) -->
         <article id="tela-relatorio" class="resultado-section tela-branca" style="display:none;">
           <header class="header-data">
             <div class="icon-circle"><svg><use href="#icon-sort"></use></svg></div>
@@ -884,7 +1043,6 @@
           <button class="btn-principal btn-secondary" style="margin-top: 24px; width: 100%; font-size: 14px;" onclick="voltarParaTurmas()">VOLTAR PARA AS TURMAS</button>
         </article>
 
-        <!-- TELA 4: RELATÓRIO GERAL DE FREQUÊNCIA (MATRIZ DO MÊS) -->
         <article id="tela-relatorio-geral" class="resultado-section tela-branca" style="display:none;">
           <header class="header-data" style="justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
             <div style="display: flex; align-items: center; gap: 12px; flex: 1; min-width: 250px;">
@@ -905,13 +1063,7 @@
     </section> 
   </main>
 
-  <!-- ==========================================================================
-       JAVASCRIPT PRINCIPAL
-       ========================================================================== -->
   <script>
-    // --------------------------------------------------------------------------
-    // PONTE DE ADAPTAÇÃO HÍBRIDA (GAS E GITHUB PAGES)
-    // --------------------------------------------------------------------------
     const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbziajmQnIikiaPOPrONmbM6cAsyEbOc_02ocqKpgpDG7nxfRnZqqyiOWwBzOEctu9w5HA/exec";
 
     if (typeof google === 'undefined') { window.google = {}; }
@@ -941,7 +1093,20 @@
                 if (data.status === 'error') failureCb(new Error(data.message));
                 else successCb(data.result);
               })
-              .catch(err => failureCb(err));
+              .catch(err => {
+                console.warn("[GAS Runner] Direct fetch failed, trying backend proxy...", err);
+                fetch('/api/gas-proxy', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ action: prop, args: args })
+                })
+                .then(res => res.json())
+                .then(data => {
+                  if (data.status === 'error') failureCb(new Error(data.message));
+                  else successCb(data.result);
+                })
+                .catch(proxyErr => failureCb(proxyErr));
+              });
             };
           }
         });
@@ -951,9 +1116,6 @@
       Object.defineProperty(google.script, 'run', { get: function() { return criarGasRunner(); } });
     }
 
-    // --------------------------------------------------------------------------
-    // ESTADO GLOBAL & INICIALIZAÇÃO
-    // --------------------------------------------------------------------------
     let state = { perfil: '', unidade: '', turno: '', turmaId: '', turmaNome: '', modo: 'diario' };
     let dbTurmas = [];
     let dadosChamadaGeral = [];
@@ -963,7 +1125,8 @@
     let mesExtenso = "";
     let dataFormatada = "";
     let alteracoesNaoSalvas = false;
-    let viewAtual = 'login'; // 'login', 'painel', 'detalhe'
+    let viewAtual = 'login';
+    let statusOtimistaTurmas = {};
 
     window.onload = () => {
       try { history.replaceState({ view: 'login' }, '', '#login'); } catch(e){}
@@ -988,96 +1151,6 @@
       selecionarPerfil('Professor');
     };
 
-    let ignorarProximoConfirmPopState = false;
-
-    window.addEventListener('beforeunload', function (e) {
-      if (alteracoesNaoSalvas) { e.preventDefault(); e.returnValue = ''; }
-    });
-
-    window.addEventListener('popstate', function (event) {
-      if (ignorarProximoConfirmPopState) {
-        ignorarProximoConfirmPopState = false;
-        sairDeFatoSemConfirmacao();
-        return;
-      }
-
-      const confirmModal = document.getElementById('confirm-modal');
-      if (confirmModal && confirmModal.style.display === 'flex') {
-        fecharConfirm(false);
-        try { history.pushState({ view: viewAtual }, '', '#' + viewAtual); } catch(e){}
-        return;
-      }
-
-      const customModal = document.getElementById('custom-modal');
-      if (customModal && customModal.style.display === 'flex') {
-        fecharModal();
-        try { history.pushState({ view: viewAtual }, '', '#' + viewAtual); } catch(e){}
-        return;
-      }
-
-      const addEstudanteModal = document.getElementById('modal-adicionar-estudante');
-      if (addEstudanteModal && addEstudanteModal.style.display === 'flex') {
-        fecharModalAdicionar();
-        try { history.pushState({ view: viewAtual }, '', '#' + viewAtual); } catch(e){}
-        return;
-      }
-
-      const targetView = (event.state && event.state.view) ? event.state.view : 'login';
-
-      if (viewAtual === 'detalhe' && targetView !== 'detalhe') {
-        if (alteracoesNaoSalvas) {
-          try { history.pushState({ view: 'detalhe' }, '', '#detalhe'); } catch(e){}
-          mostrarConfirm("Você tem uma chamada em andamento. Deseja descartar os dados e voltar às turmas?", () => {
-            alteracoesNaoSalvas = false;
-            if (targetView === 'login') {
-              sairDeFatoSemConfirmacao();
-            } else {
-              exibirPainelTurmasSemConfirmacao();
-            }
-          });
-          return;
-        } else {
-          if (targetView === 'login') {
-            sairDeFatoSemConfirmacao();
-          } else {
-            exibirPainelTurmasSemConfirmacao();
-          }
-          return;
-        }
-      }
-
-      if (viewAtual === 'painel' && targetView === 'login') {
-        try { history.pushState({ view: 'painel' }, '', '#painel'); } catch(e){}
-        if (alteracoesNaoSalvas) {
-          mostrarConfirm("Você tem uma chamada em andamento. Deseja sair do sistema e perder as alterações?", () => {
-            alteracoesNaoSalvas = false;
-            sairDeFatoSemConfirmacao();
-          });
-        } else {
-          mostrarConfirm("Deseja realmente sair do sistema e voltar para a seleção de perfil?", () => {
-            sairDeFatoSemConfirmacao();
-          });
-        }
-        return;
-      }
-
-      viewAtual = targetView;
-      if (targetView === 'login') {
-        sairDeFatoSemConfirmacao();
-      } else if (targetView === 'painel') {
-        exibirPainelTurmasSemConfirmacao();
-      } else if (targetView === 'detalhe') {
-        if (state.turmaId) {
-          exibirDetalheTurma();
-        } else {
-          exibirPainelTurmasSemConfirmacao();
-        }
-      }
-    });
-
-    // --------------------------------------------------------------------------
-    // UTILITÁRIOS GERAIS
-    // --------------------------------------------------------------------------
     function formatarDataBR(dateObj) {
       const dia = String(dateObj.getDate()).padStart(2, '0');
       const mes = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -1098,9 +1171,6 @@
       return new Blob(byteArrays, { type: mimeType });
     }
 
-    // --------------------------------------------------------------------------
-    // CONTROLE DE NAVEGAÇÃO & LOGIN
-    // --------------------------------------------------------------------------
     let perfilSelecionado = '';
 
     function alternarModoNavegacao(novoModo) {
@@ -1146,7 +1216,7 @@
         if (senhaInput.value === 'portomario26') efetuarLogin(perfilSelecionado);
         else mostrarModal('Acesso Negado', 'A senha informada está incorreta. Verifique e tente novamente.', () => {
           senhaInput.value = '';
-          setTimeout(() => senhaInput.focus(), 100);
+          setTimeout(() => senhaInput.focus(), 50);
         });
       } else { efetuarLogin(perfilSelecionado); }
     }
@@ -1159,11 +1229,6 @@
       
       state.unidade = ''; state.turno = ''; state.turmaId = '';
       document.querySelectorAll('.btn-choice').forEach(b => b.classList.remove('selected'));
-      
-      const elBlocoUnidade = document.getElementById('bloco-unidade');
-      if (elBlocoUnidade) elBlocoUnidade.style.display = 'none';
-      const elBlocoTurma = document.getElementById('bloco-turma');
-      if (elBlocoTurma) elBlocoTurma.style.display = 'none';
 
       try { history.pushState({ view: 'painel' }, '', '#painel'); } catch(e){}
       viewAtual = 'painel';
@@ -1173,29 +1238,12 @@
     }
 
     function fazerLogout() {
-      if (alteracoesNaoSalvas) {
-        mostrarConfirm("Você tem uma chamada em andamento. Deseja sair do sistema e perder as alterações?", () => {
-          alteracoesNaoSalvas = false;
-          confirmarLogout();
-        });
-      } else {
-        mostrarConfirm("Deseja realmente sair do sistema e voltar para a seleção de perfil?", () => {
-          confirmarLogout();
-        });
-      }
-    }
-
-    function confirmarLogout() {
-      ignorarProximoConfirmPopState = true;
-      if (history.state && (history.state.view === 'painel' || history.state.view === 'detalhe')) {
-        history.back();
-      } else {
+      mostrarConfirm("Deseja realmente sair do sistema?", () => {
         sairDeFatoSemConfirmacao();
-      }
+      });
     }
 
     function sairDeFatoSemConfirmacao() {
-      ignorarProximoConfirmPopState = false;
       state.perfil = '';
       state.turmaId = '';
       alteracoesNaoSalvas = false;
@@ -1211,22 +1259,7 @@
     }
 
     function voltarParaTurmas() {
-      if (alteracoesNaoSalvas) {
-        mostrarConfirm("Você tem uma chamada em andamento. Deseja descartar os dados e voltar às turmas?", () => {
-          alteracoesNaoSalvas = false;
-          if (history.state && history.state.view === 'detalhe') {
-            history.back();
-          } else {
-            exibirPainelTurmasSemConfirmacao();
-          }
-        });
-      } else {
-        if (history.state && history.state.view === 'detalhe') {
-          history.back();
-        } else {
-          exibirPainelTurmasSemConfirmacao();
-        }
-      }
+      exibirPainelTurmasSemConfirmacao();
     }
 
     function exibirPainelTurmasSemConfirmacao() {
@@ -1252,18 +1285,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function exibirDetalheTurma() {
-      viewAtual = 'detalhe';
-      const btnV = document.getElementById('btn-voltar-painel-header');
-      if (btnV) btnV.style.display = 'flex';
-      document.getElementById('conteudo-selecao-turmas').style.display = 'none';
-      document.getElementById('area-resultados').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // --------------------------------------------------------------------------
-    // GERENCIAMENTO DE MODAIS
-    // --------------------------------------------------------------------------
     let callbackFechamentoModal = null;
     let callbackConfirmacao = null;
 
@@ -1302,47 +1323,133 @@
       document.getElementById('modal-adicionar-estudante').style.display = 'none';
     }
 
-    // --------------------------------------------------------------------------
-    // SELEÇÃO & INTERFACE GERAL (PAINEL DE FILTROS)
-    // --------------------------------------------------------------------------
-    function setSelecao(tipo, valor, btnElement) {
-      if (alteracoesNaoSalvas) {
-        mostrarConfirm("Você tem uma chamada em andamento. Deseja descartar os dados para mudar os filtros?", () => {
-          alteracoesNaoSalvas = false; mostrarResultado(''); aplicarSelecao(tipo, valor, btnElement);
+    let estudanteParaRemanejar = { nome: '', simade: '' };
+
+    function abrirModalRemanejar(nome, simade) {
+      if (state.perfil === 'Professor') return;
+      estudanteParaRemanejar = { nome: nome, simade: simade };
+      
+      document.getElementById('remanejar-nome-display').innerText = nome;
+      document.getElementById('remanejar-simade-display').innerText = 'SIMADE: ' + (simade || 'Não informado');
+      document.getElementById('remanejar-origem-display').innerText = state.turmaNome || state.turmaId;
+      
+      const selectDestino = document.getElementById('select-turma-remanejar');
+      selectDestino.innerHTML = '';
+      
+      const outrasTurmas = (dbTurmas || []).filter(t => t.id !== state.turmaId);
+      if (outrasTurmas.length === 0) {
+        selectDestino.innerHTML = '<option value="">Nenhuma outra turma disponível</option>';
+      } else {
+        outrasTurmas.forEach(t => {
+          const opt = document.createElement('option');
+          opt.value = t.id;
+          opt.innerText = t.nome + ' (' + t.turno + ' - ' + t.unidade + ')';
+          selectDestino.appendChild(opt);
         });
-      } else { mostrarResultado(''); aplicarSelecao(tipo, valor, btnElement); }
+      }
+      
+      document.getElementById('modal-remanejar-estudante').style.display = 'flex';
     }
 
-    function aplicarSelecao(tipo, valor, btnElement) {
-      state[tipo] = valor;
-      const container = btnElement.parentElement;
-      const botoes = container.getElementsByClassName('btn-choice');
-      for(let b of botoes) b.classList.remove('selected');
-      btnElement.classList.add('selected');
+    function fecharModalRemanejar() {
+      document.getElementById('modal-remanejar-estudante').style.display = 'none';
+    }
 
-      if (tipo === 'turno') {
-        const blocoUnidade = document.getElementById('bloco-unidade');
-        if (blocoUnidade) {
-          if (valor === 'Manhã' || valor === 'Tarde') {
-            state.unidade = 'Sede';
-            blocoUnidade.style.display = 'none';
-          } else if (valor === 'Noite') {
-            state.unidade = '';
-            blocoUnidade.style.display = 'block';
-            const gridUnidade = document.getElementById('grid-unidade');
-            if (gridUnidade) {
-              const botoesUnidade = gridUnidade.getElementsByClassName('btn-choice');
-              for(let b of botoesUnidade) b.classList.remove('selected');
-            }
-          }
-        }
+    let estudanteParaEditar = { nomeOriginal: '', simadeOriginal: '' };
+
+    function abrirModalEditarEstudante(nome, simade) {
+      if (state.perfil === 'Professor') return;
+      estudanteParaEditar = { nomeOriginal: nome, simadeOriginal: simade || '' };
+      
+      document.getElementById('editar-turma-display').innerText = state.turmaNome || state.turmaId;
+      document.getElementById('editar-nome-input').value = nome;
+      document.getElementById('editar-simade-display').innerText = simade || 'Não informado';
+      
+      document.getElementById('modal-editar-estudante').style.display = 'flex';
+      setTimeout(() => {
+        const inp = document.getElementById('editar-nome-input');
+        if (inp) { inp.focus(); inp.select(); }
+      }, 50);
+    }
+
+    function fecharModalEditarEstudante() {
+      document.getElementById('modal-editar-estudante').style.display = 'none';
+    }
+
+    function confirmarEditarEstudante() {
+      if (state.perfil === 'Professor') return;
+      const novoNomeInput = document.getElementById('editar-nome-input');
+      const novoNome = (novoNomeInput ? novoNomeInput.value : '').trim().toUpperCase();
+
+      if (!novoNome) {
+        return mostrarModal("AVISO", "O nome do estudante não pode ficar vazio.");
       }
-      atualizarInterface();
+
+      if (novoNome === estudanteParaEditar.nomeOriginal.toUpperCase().trim()) {
+        fecharModalEditarEstudante();
+        return;
+      }
+
+      fecharModalEditarEstudante();
+
+      const simadeTexto = estudanteParaEditar.simadeOriginal ? (' (' + estudanteParaEditar.simadeOriginal + ')') : '';
+      const msgConfirm = 'Deseja realmente alterar o nome do estudante de "' + estudanteParaEditar.nomeOriginal + '" para "' + novoNome + '"?\n\nO SIMADE' + simadeTexto + ' permanece inalterado e o novo nome será sincronizado em todas as guias da planilha.';
+
+      mostrarConfirm(msgConfirm, () => {
+        mostrarResultado('loading-inline');
+        google.script.run
+          .withSuccessHandler(res => {
+            mostrarModal("NOME ATUALIZADO", res.mensagem || "Nome do estudante atualizado com sucesso!", () => {
+              if (state.modo === 'relatorio_geral') carregarRelatorioGeralMatriz();
+              else if (state.perfil === 'Professor') prepararDiario();
+              else abrirRelatorioTurma(state.turmaId);
+            });
+          })
+          .withFailureHandler(err => {
+            mostrarModal("ERRO NA ATUALIZAÇÃO", err.message || "Falha ao editar nome do estudante.");
+          })
+          .editarEstudante(state.turmaId, estudanteParaEditar.nomeOriginal, novoNome, state.perfil);
+      });
+    }
+
+    function confirmarRemanejarEstudante() {
+      if (state.perfil === 'Professor') return;
+      const selectDestino = document.getElementById('select-turma-remanejar');
+      const turmaDestinoId = selectDestino ? selectDestino.value : '';
+      
+      if (!turmaDestinoId) {
+        return mostrarModal("AVISO", "Selecione uma turma de destino válida para remanejar o estudante.");
+      }
+      
+      const turmaDestinoObj = (dbTurmas || []).find(t => t.id === turmaDestinoId);
+      const turmaDestinoNome = turmaDestinoObj ? turmaDestinoObj.nome : turmaDestinoId;
+      
+      fecharModalRemanejar();
+      
+      mostrarConfirm(`Deseja realmente remanejar o estudante "${estudanteParaRemanejar.nome}" da turma "${state.turmaNome}" para a turma "${turmaDestinoNome}"?\n\nEle será desativado na turma atual e seus registros de presença serão transferidos para a nova turma.`, () => {
+        mostrarResultado('loading-inline');
+        google.script.run
+          .withSuccessHandler(res => {
+            mostrarModal("REMANEJAMENTO CONCLUÍDO", res.mensagem || "Estudante remanejado com sucesso!", () => {
+              if (state.modo === 'relatorio_geral') carregarRelatorioGeralMatriz();
+              else if (state.perfil === 'Professor') prepararDiario();
+              else abrirRelatorioTurma(state.turmaId);
+            });
+          })
+          .withFailureHandler(err => {
+            mostrarModal("ERRO NO REMANEJAMENTO", err.message || "Falha ao remanejar estudante.");
+          })
+          .remanejarEstudante(state.turmaId, turmaDestinoId, estudanteParaRemanejar.nome, state.perfil);
+      });
     }
 
     function atualizarInterface() {
       state.turmaId = ""; 
       const ehAdmin = state.perfil === 'Supervisao' || state.perfil === 'Secretaria';
+      const progressBar = document.getElementById('status-turmas-progress-bar');
+      if (progressBar && (!ehAdmin || state.modo !== 'diario')) {
+        progressBar.style.display = 'none';
+      }
       
       if (state.modo === 'relatorio_geral') {
         document.getElementById('bloco-data').style.display = 'none';
@@ -1372,23 +1479,16 @@
             <div id="status-card-${t.id}" class="status-container-card"></div>
           `;
           card.onclick = function() {
-            if(alteracoesNaoSalvas && state.turmaId !== t.id) {
-               mostrarConfirm("Descartar os dados atuais e abrir esta turma?", () => {
-                  alteracoesNaoSalvas = false; executarAcaoCard(t, card, gridTurma);
-               });
-            } else { executarAcaoCard(t, card, gridTurma); }
+            executarAcaoCard(t, card, gridTurma);
           };
           gridTurma.appendChild(card);
         });
         document.getElementById('bloco-turma').style.display = 'block';
         if (state.modo === 'diario') {
           carregarStatusDosCards();
-        } else {
-          const todosBadges = document.querySelectorAll('.status-container-card');
-          todosBadges.forEach(b => b.innerHTML = '');
         }
       } else {
-        gridTurma.innerHTML = '<span style="color:var(--secondary-text); font-size:14px; width:100%; font-weight:500; text-transform:uppercase;">Buscando turmas...</span>';
+        gridTurma.innerHTML = '<span style="color:var(--secondary-text); font-size:14px; width:100%; font-weight:500;">Buscando turmas...</span>';
         document.getElementById('bloco-turma').style.display = 'block';
       }
     }
@@ -1401,11 +1501,6 @@
       for(let c of todosC) c.classList.remove('selected');
       card.classList.add('selected');
 
-      if (viewAtual !== 'detalhe') {
-        try { history.pushState({ view: 'detalhe' }, '', '#detalhe'); } catch(e){}
-        viewAtual = 'detalhe';
-      }
-
       mostrarResultado('loading-inline');
 
       calcularDatas(); 
@@ -1414,64 +1509,36 @@
       else abrirRelatorioTurma(t.id);
     }
 
-    // Cache local e varredura de alterações em planilhas
-    let cacheStatusTurmas = {};
-
-    function carregarCacheDoStorage() {
-      try {
-        const raw = sessionStorage.getItem('cacheStatusTurmasFull');
-        if (raw) cacheStatusTurmas = JSON.parse(raw);
-      } catch(e){}
-    }
-
-    function salvarCacheNoStorage() {
-      try {
-        sessionStorage.setItem('cacheStatusTurmasFull', JSON.stringify(cacheStatusTurmas));
-      } catch(e){}
-    }
-
-    function obterStatusCache(dataFormatada, turmaId) {
-      if (!dataFormatada || !turmaId) return null;
-      carregarCacheDoStorage();
-      const entry = cacheStatusTurmas[turmaId];
-      if (entry && entry.data === dataFormatada) {
-        return entry.status;
-      }
-      return null;
-    }
-
-    function salvarStatusCache(dataFormatada, turmaId, status, lastUpdated) {
-      if (!dataFormatada || !turmaId) return;
-      carregarCacheDoStorage();
-      const prev = cacheStatusTurmas[turmaId] || {};
-      cacheStatusTurmas[turmaId] = {
-        status: status,
-        lastUpdated: lastUpdated !== undefined ? lastUpdated : (prev.lastUpdated || 0),
-        data: dataFormatada
-      };
-      salvarCacheNoStorage();
-    }
-
-    function renderizarBadgeStatusCard(divStatus, status) {
-      if (!divStatus) return;
-      if (status === 'Pendente') divStatus.innerHTML = `<span class="badge-alerta-card">Pendente</span>`;
-      else if (status === 'Realizada') divStatus.innerHTML = `<span class="badge-sucesso-card">Realizada</span>`;
-      else if (status === 'SEM AULA' || status === 'Sem Aula') divStatus.innerHTML = `<span class="badge-sem-aula-card">SEM AULA</span>`;
-      else divStatus.innerHTML = ``;
-    }
-
     function carregarStatusDosCards() {
       const todosBadges = document.querySelectorAll('.status-container-card');
       if (!todosBadges || todosBadges.length === 0) return;
 
-      if (state.modo !== 'diario') {
-        todosBadges.forEach(b => b.innerHTML = '');
-        return;
+      const ehAdmin = state.perfil === 'Supervisao' || state.perfil === 'Secretaria';
+      const progressBar = document.getElementById('status-turmas-progress-bar');
+
+      // Exibe a barra de progresso nos perfis de Secretaria e Supervisão
+      if (ehAdmin && progressBar) {
+        progressBar.style.display = 'block';
+      }
+
+      // Feedback visual em cada card enquanto carrega para perfis administrativos
+      if (ehAdmin) {
+        todosBadges.forEach(b => {
+          b.innerHTML = '<span class="badge-loading-card">Consultando...</span>';
+        });
+      } else {
+        // No perfil do Professor, aplica status já salvo na sessão
+        dbTurmas.forEach(t => {
+          const divStatus = document.getElementById(`status-card-${t.id}`);
+          if (divStatus && statusOtimistaTurmas[t.id]) {
+            divStatus.innerHTML = `<span class="badge-sucesso-card">${statusOtimistaTurmas[t.id]}</span>`;
+          }
+        });
       }
 
       let dataUsada = new Date();
       let inputD = document.getElementById('input-data') ? document.getElementById('input-data').value : '';
-      if (inputD && (state.perfil === 'Supervisao' || state.perfil === 'Secretaria')) {
+      if (inputD && ehAdmin) {
         dataUsada = new Date(inputD + 'T12:00:00');
       }
 
@@ -1479,46 +1546,33 @@
       let meses = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
       let mesExtensoLocal = meses[dataUsada.getMonth()];
 
-      // 1. Exibe o status do cache ou o indicador de verificação
-      carregarCacheDoStorage();
-      todosBadges.forEach(divStatus => {
-        const turmaId = divStatus.id.replace('status-card-', '');
-        const statusCached = obterStatusCache(dataFormatadaLocal, turmaId);
-        if (statusCached !== null) {
-          renderizarBadgeStatusCard(divStatus, statusCached);
-        } else if (state.perfil === 'Professor') {
-          divStatus.innerHTML = '';
-        } else {
-          divStatus.innerHTML = `<span class="badge-loading-card"><span class="mini-spinner"></span> VERIFICANDO...</span>`;
-        }
-      });
-
-      const startTime = Date.now();
-
-      // 2. Varredura no servidor (silenciosa para o Professor, com feedback visual para Secretaria/Supervisão)
       google.script.run
         .withSuccessHandler(turmasStatus => {
-          const elapsedTime = Date.now() - startTime;
-          const minDelay = state.perfil === 'Professor' ? 0 : Math.max(0, 650 - elapsedTime);
+          if (progressBar) progressBar.style.display = 'none';
 
-          setTimeout(() => {
-            if (Array.isArray(turmasStatus)) {
-              turmasStatus.forEach(t => {
-                salvarStatusCache(dataFormatadaLocal, t.id, t.status, t.lastUpdated);
-                const divStatus = document.getElementById(`status-card-${t.id}`);
-                if (divStatus) {
-                  renderizarBadgeStatusCard(divStatus, t.status);
+          if (Array.isArray(turmasStatus)) {
+            turmasStatus.forEach(t => {
+              const divStatus = document.getElementById(`status-card-${t.id}`);
+              if (divStatus) {
+                if (statusOtimistaTurmas[t.id]) {
+                  divStatus.innerHTML = `<span class="badge-sucesso-card">${statusOtimistaTurmas[t.id]}</span>`;
+                } else if (t.status === 'Pendente') {
+                  divStatus.innerHTML = `<span class="badge-alerta-card">Pendente</span>`;
+                } else if (t.status === 'Realizada') {
+                  divStatus.innerHTML = `<span class="badge-sucesso-card">Realizada</span>`;
+                } else if (t.status === 'SEM AULA') {
+                  divStatus.innerHTML = `<span class="badge-sem-aula-card">SEM AULA</span>`;
+                } else {
+                  divStatus.innerHTML = `<span class="badge-sem-aula-card">${t.status}</span>`;
                 }
-              });
-            }
-          }, minDelay);
+              }
+            });
+          }
         })
-        .withFailureHandler(err => {
-          todosBadges.forEach(b => {
-            if (b.innerHTML.includes('VERIFICANDO')) b.innerHTML = '';
-          });
+        .withFailureHandler(() => {
+          if (progressBar) progressBar.style.display = 'none';
         })
-        .getPainelMonitoramento(null, null, dataFormatadaLocal, mesExtensoLocal, cacheStatusTurmas);
+        .getPainelMonitoramento(null, null, dataFormatadaLocal, mesExtensoLocal, {});
     }
 
     function calcularDatas() {
@@ -1562,20 +1616,15 @@
       exibirPainelTurmasSemConfirmacao();
     }
 
-    function voltarInicio() {
-      voltarParaTurmas();
-    }
-
-    // --------------------------------------------------------------------------
-    // LÓGICA DE CHAMADA (DIÁRIO E RELATÓRIOS)
-    // --------------------------------------------------------------------------
     function confirmarAdicionarEstudante() {
       if (state.perfil === 'Professor') return;
-      const nome = document.getElementById('novo-nome').value;
-      const simade = document.getElementById('novo-simade').value;
+      const nomeInput = document.getElementById('novo-nome');
+      const simadeInput = document.getElementById('novo-simade');
+      const nome = (nomeInput ? nomeInput.value : '').trim().toUpperCase();
+      const simade = (simadeInput ? simadeInput.value : '').trim();
       
-      if (!nome.trim()) return mostrarModal("AVISO", "O nome do estudante é obrigatório.");
-      if (!simade.trim()) return mostrarModal("AVISO", "O SIMADE do estudante é obrigatório.");
+      if (!nome) return mostrarModal("AVISO", "O nome do estudante é obrigatório.");
+      if (!simade) return mostrarModal("AVISO", "O SIMADE do estudante é obrigatório.");
       
       fecharModalAdicionar();
       mostrarResultado('loading-inline');
@@ -1589,65 +1638,13 @@
                 else abrirRelatorioTurma(state.turmaId); 
              });
            } else {
-             mostrarModal("ERRO", res.mensagem, () => { 
-                if(state.modo === 'relatorio_geral') mostrarResultado('tela-relatorio-geral');
-                else if(state.perfil === 'Professor') mostrarResultado('tela-chamada');
-                else mostrarResultado('tela-relatorio'); 
-             });
+             mostrarModal("ERRO", res.mensagem);
            }
         })
         .withFailureHandler(err => {
-           mostrarModal("ERRO", err.message, () => { 
-                if(state.modo === 'relatorio_geral') mostrarResultado('tela-relatorio-geral');
-                else if(state.perfil === 'Professor') mostrarResultado('tela-chamada');
-                else mostrarResultado('tela-relatorio'); 
-           });
-        }).adicionarEstudante(state.turmaId, nome, simade);
-    }
-
-    function confirmarAlteracaoStatus(index, contexto, event) {
-      event.stopPropagation();
-      if (state.perfil === 'Professor') return;
-      let aluno = contexto === 'chamada' ? dadosChamadaGeral[index] : dadosRelatorioGeral[index];
-      let acao = aluno.inativo ? 'ATIVAR' : 'DESATIVAR';
-      
-      mostrarConfirm(`Tem certeza que deseja ${acao} o estudante ${aluno.nome}?`, () => {
-         alterarStatusRapido(index, contexto, null);
-      });
-    }
-
-    function alterarStatusRapido(index, contexto, event) {
-      if (event) event.stopPropagation();
-      if (state.perfil === 'Professor') return;
-      let aluno = contexto === 'chamada' ? dadosChamadaGeral[index] : dadosRelatorioGeral[index];
-      const novoStatusInativo = !aluno.inativo;
-      const nomeEstudante = aluno.nome;
-      aluno.inativo = novoStatusInativo;
-      
-      if (contexto === 'chamada' && novoStatusInativo && aluno.status === 'F') {
-        aluno.status = '•'; 
-        aluno.faltasAtuais = aluno.faltasIniciais;
-      }
-      
-      if (contexto === 'chamada') {
-        dadosChamadaGeral.sort((a, b) => Number(a.inativo) - Number(b.inativo) || (a.nome || '').localeCompare(b.nome || ''));
-        renderizarListaChamada();
-      } else {
-        dadosRelatorioGeral.sort((a, b) => Number(a.inativo) - Number(b.inativo) || (a.nome || '').localeCompare(b.nome || ''));
-        renderizarListaRelatorio();
-      }
-
-      google.script.run.withFailureHandler(err => {
-          aluno.inativo = !novoStatusInativo;
-          if (contexto === 'chamada') {
-            dadosChamadaGeral.sort((a, b) => Number(a.inativo) - Number(b.inativo) || (a.nome || '').localeCompare(b.nome || ''));
-            renderizarListaChamada();
-          } else {
-            dadosRelatorioGeral.sort((a, b) => Number(a.inativo) - Number(b.inativo) || (a.nome || '').localeCompare(b.nome || ''));
-            renderizarListaRelatorio();
-          }
-          mostrarModal("ERRO", "Falha ao sincronizar status: " + err.message);
-      }).alternarStatusEstudante(state.turmaId, nomeEstudante, novoStatusInativo);
+           mostrarModal("ERRO", err.message || "Falha ao adicionar estudante na planilha.");
+        })
+        .adicionarEstudante(state.turmaId, nome, simade, state.perfil);
     }
 
     function prepararDiario() {
@@ -1660,13 +1657,6 @@
       google.script.run.withSuccessHandler(payload => {
            window.diasChamada = payload.datas || [];
            window.jaPossuiRegistro = !!payload.jaPossuiRegistro;
-           if (payload.jaPossuiRegistro) {
-             salvarStatusCache(dataFormatada, state.turmaId, 'Realizada');
-           } else if (payload.dataValida === false) {
-             salvarStatusCache(dataFormatada, state.turmaId, 'SEM AULA');
-           } else {
-             salvarStatusCache(dataFormatada, state.turmaId, 'Pendente');
-           }
 
            const dataCurtaLocal = payload.dataCurta || dataFormatada.substring(0, 5).trim();
            const colIdx = window.diasChamada.indexOf(dataCurtaLocal);
@@ -1683,17 +1673,11 @@
            mostrarResultado('tela-chamada');
            alteracoesNaoSalvas = true;
 
-           const btnSalvar = document.getElementById('btn-salvar');
-           if (payload.dataValida === false) {
-             btnSalvar.disabled = true;
-             mostrarModal("DATA NÃO PREVISTA", `A data ${payload.dataCurta || dataFormatada.substring(0,5)} não consta no calendário da planilha para o mês de ${mesExtenso}. Não é possível realizar chamada nesta data.`);
-           } else { btnSalvar.disabled = false; }
-
            renderizarListaChamada();
 
            const alunosAtivos = dadosChamadaGeral.filter(a => !a.inativo);
            document.getElementById('toggle-todos').checked = alunosAtivos.length > 0 && alunosAtivos.every(a => a.status === '•');
-        }).withFailureHandler(err => { mostrarModal("Erro", err.message); mostrarResultado(''); })
+        })
         .getDadosChamada(state.turmaId, mesExtenso, dataFormatada);
     }
 
@@ -1716,11 +1700,6 @@
         }).join('');
 
         let estiloNome = aluno.inativo ? 'text-decoration: line-through; opacity: 0.6;' : '';
-        let corInativo = aluno.inativo ? 'var(--success-color)' : 'var(--danger-color)';
-        let bgInativo = aluno.inativo ? 'var(--success-light)' : 'var(--danger-light)';
-        let textInativo = aluno.inativo ? 'ATIVAR' : 'DESATIVAR';
-        
-        let btnStatus = state.perfil === 'Professor' ? '' : `<button onclick="confirmarAlteracaoStatus(${i}, 'chamada', event)" style="margin-left:8px; padding:3px 8px; font-size:10px; font-weight:600; border-radius:6px; border:1px solid ${corInativo}; background:${bgInativo}; color:${corInativo}; cursor:pointer; height:max-content;">${textInativo}</button>`;
 
         li.innerHTML = `
           <div class="student-row-header" style="padding:0;">
@@ -1728,7 +1707,6 @@
               <div class="simade" style="user-select:none; ${estiloNome}">${aluno.simade}</div>
               <div class="student-name-container" style="user-select:none; ${estiloNome}">
                 <span class="student-name-text">${aluno.nome}</span>
-                ${btnStatus}
               </div>
             </div>
             <div class="student-actions-group">
@@ -1767,13 +1745,11 @@
         aluno.faltasAtuais = aluno.faltasIniciais + 1;
         btn.innerHTML = `<svg class="icon-absent"><use href="#icon-cross"></use></svg>`;
         divFaltas.style.color = 'var(--danger-color)'; 
-        divFaltas.style.fontSize = '18px';
       } else {
         aluno.status = '•'; 
         aluno.faltasAtuais = aluno.faltasIniciais;
         btn.innerHTML = `<svg class="icon-present"><use href="#icon-check"></use></svg>`;
         divFaltas.style.color = ''; 
-        divFaltas.style.fontSize = '';
       }
       divFaltas.innerText = aluno.faltasAtuais < 10 ? '0' + aluno.faltasAtuais : aluno.faltasAtuais;
       
@@ -1794,11 +1770,9 @@
             if(todosPresentes) {
               btn.innerHTML = `<svg class="icon-present"><use href="#icon-check"></use></svg>`;
               divFaltas.style.color = '';
-              divFaltas.style.fontSize = '';
             } else {
               btn.innerHTML = `<svg class="icon-absent"><use href="#icon-cross"></use></svg>`;
               divFaltas.style.color = 'var(--danger-color)';
-              divFaltas.style.fontSize = '18px';
             }
             divFaltas.innerText = aluno.faltasAtuais < 10 ? '0' + aluno.faltasAtuais : aluno.faltasAtuais;
           }
@@ -1807,49 +1781,59 @@
     }
 
     function enviarChamada() {
-      if (window.jaPossuiRegistro) {
-        mostrarConfirm(
-          "Atenção: Já existe um registro de chamada para esta data. Deseja realmente sobrescrever os dados da chamada?",
-          () => {
-            executarEnvioChamada();
-          }
-        );
+      const turmaSalvaId = state.turmaId;
+      const turmaSalvaNome = state.turmaNome;
+      const ehProfessor = state.perfil === 'Professor';
+
+      if (ehProfessor) {
+        // Marca a turma com status "Realizada" imediatamente na interface e na sessão
+        statusOtimistaTurmas[turmaSalvaId] = 'Realizada';
+        const divCard = document.getElementById(`status-card-${turmaSalvaId}`);
+        if (divCard) {
+          divCard.innerHTML = '<span class="badge-sucesso-card">Realizada</span>';
+        }
+
+        // Feedback imediato para o Professor
+        alteracoesNaoSalvas = false;
+        mostrarModal("CHAMADA LANÇADA!", `A chamada da turma "${turmaSalvaNome}" foi registrada com sucesso!`, () => {
+          resetarUI();
+          // Atualiza os cards imediatamente com o status otimista
+          carregarStatusDosCards();
+        });
+
+        // Envio assíncrono em segundo plano para gravação na planilha
+        google.script.run
+          .withSuccessHandler(res => {
+            console.log("[Chamada em segundo plano salva com sucesso]", res);
+          })
+          .withFailureHandler(err => {
+            console.error("[Erro ao salvar chamada em segundo plano]", err);
+            mostrarModal("AVISO DE SINCRONIZAÇÃO", "Houve uma instabilidade ao sincronizar a chamada com a planilha: " + (err.message || err));
+          })
+          .salvarRegistroChamada(turmaSalvaId, mesExtenso, dataFormatada, dadosChamadaGeral);
       } else {
-        executarEnvioChamada();
+        document.getElementById('btn-salvar').disabled = true;
+        mostrarResultado('loading-inline');
+        google.script.run
+          .withSuccessHandler(res => {
+            document.getElementById('btn-salvar').disabled = false;
+            statusOtimistaTurmas[turmaSalvaId] = 'Realizada';
+            mostrarModal("SUCESSO!", res, () => { resetarUI(); carregarStatusDosCards(); }); 
+          })
+          .withFailureHandler(err => {
+            document.getElementById('btn-salvar').disabled = false;
+            mostrarModal("ERRO", "Falha ao salvar chamada: " + (err.message || err));
+          })
+          .salvarRegistroChamada(turmaSalvaId, mesExtenso, dataFormatada, dadosChamadaGeral);
       }
     }
 
-    function executarEnvioChamada() {
-      document.getElementById('btn-salvar').disabled = true;
-      mostrarResultado('loading-inline');
-      google.script.run
-        .withSuccessHandler(res => {
-          document.getElementById('btn-salvar').disabled = false;
-          window.jaPossuiRegistro = true;
-          salvarStatusCache(dataFormatada, state.turmaId, 'Realizada');
-          const divStatus = document.getElementById(`status-card-${state.turmaId}`);
-          if (divStatus) {
-            renderizarBadgeStatusCard(divStatus, 'Realizada');
-          }
-          mostrarModal("SUCESSO!", res, () => { resetarUI(); carregarStatusDosCards(); }); 
-        })
-        .withFailureHandler(err => {
-          mostrarModal("ERRO", err.message);
-          document.getElementById('btn-salvar').disabled = false;
-          mostrarResultado('tela-chamada');
-        }).salvarRegistroChamada(state.turmaId, mesExtenso, dataFormatada, dadosChamadaGeral);
-    }
-
-    // --------------------------------------------------------------------------
-    // RELATÓRIOS & MATRIZ MENSAL
-    // --------------------------------------------------------------------------
     function abrirRelatorioTurma(turmaId) {
       mostrarResultado('loading-inline');
       google.script.run.withSuccessHandler(dados => {
            mostrarResultado('tela-relatorio');
            document.getElementById('relatorio-header-display').innerHTML = `<strong>${dados.turmaNome}</strong><br><span style="font-size:14px; font-weight:500; color:var(--secondary-text);">MÊS: ${mesExtenso}</span>`;
            document.getElementById('btn-retroativa').style.display = state.perfil === 'Supervisao' ? 'block' : 'none';
-           
            document.getElementById('btn-add-estudante').style.display = state.perfil === 'Professor' ? 'none' : 'block';
            
            window.aulasPrevistasGeral = dados.aulasPrevistas || 0; 
@@ -1857,9 +1841,9 @@
            
            window.datasRelatorioGeral = dados.datas || []; 
            dadosRelatorioGeral = dados.alunos;
-           dadosRelatorioGeral.sort((a, b) => Number(a.inativo) - Number(b.inativo) || (a.nome || '').localeCompare(b.nome || ''));
+           dadosRelatorioGeral.sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' }));
            renderizarListaRelatorio();
-        }).withFailureHandler(err => { mostrarModal("Erro", err.message); mostrarResultado(''); })
+        })
         .getRelatorioTurma(turmaId, mesExtenso);
     }
 
@@ -1887,10 +1871,8 @@
         aluno.faltasTotais = calcTotal; 
         aluno.faltasConsecutivas = calcConsec;
 
-        let aulasMatriculado = historicoAluno.filter(v => v !== '--' && v !== '' && v !== null && v !== undefined).length;
-        let aulasPrevistas = aulasMatriculado > 0 ? aulasMatriculado : (window.aulasPrevistasGeral > 0 ? window.aulasPrevistasGeral : historicoAluno.length);
-        let presencas = Math.max(0, aulasPrevistas - calcTotal);
-        let freqPercent = aulasPrevistas > 0 ? Math.round((presencas / aulasPrevistas) * 100) : 100;
+        let presencas = Math.max(0, historicoAluno.length - calcTotal);
+        let freqPercent = historicoAluno.length > 0 ? Math.round((presencas / historicoAluno.length) * 100) : 100;
         let corFrequencia = freqPercent < 75 ? 'var(--danger-color)' : 'var(--success-color)';
 
         let alerta = calcConsec >= 4 ? `<span class="alert-tag">ALERTA</span>` : '';
@@ -1903,25 +1885,37 @@
         }).join('');
 
         let estiloNome = aluno.inativo ? 'text-decoration: line-through; opacity: 0.6;' : '';
-        let corInativo = aluno.inativo ? 'var(--success-color)' : 'var(--danger-color)';
-        let bgInativo = aluno.inativo ? 'var(--success-light)' : 'var(--danger-light)';
-        let textInativo = aluno.inativo ? 'ATIVAR' : 'DESATIVAR';
-        
-        let btnStatus = state.perfil === 'Professor' ? '' : `<button onclick="confirmarAlteracaoStatus(${index}, 'relatorio', event)" style="margin-left:8px; padding:3px 8px; font-size:10px; font-weight:600; border-radius:6px; border:1px solid ${corInativo}; background:${bgInativo}; color:${corInativo}; cursor:pointer; height:max-content;">${textInativo}</button>`;
+        let tagInativo = aluno.inativo ? `<span style="font-size:10px; background:#e2e8f0; color:#64748b; padding:2px 6px; border-radius:4px; margin-left:6px; font-weight:700;">INATIVO</span>` : '';
+        let btnStatus = (state.perfil === 'Secretaria' || state.perfil === 'Supervisao') 
+          ? (aluno.inativo
+              ? `<button class="btn-status-toggle btn-status-ativar" onclick="event.stopPropagation(); alternarStatusAlunoUI('${aluno.nome}', true)" title="Reativar estudante">ATIVAR</button>`
+              : `<button class="btn-status-toggle btn-status-desativar" onclick="event.stopPropagation(); alternarStatusAlunoUI('${aluno.nome}', false)" title="Desativar e taxar estudante em todas as guias">DESATIVAR</button>`)
+          : '';
+        let btnRemanejar = (state.perfil === 'Secretaria' || state.perfil === 'Supervisao')
+          ? `<button class="btn-status-toggle btn-status-remanejar" onclick="event.stopPropagation(); abrirModalRemanejar('${aluno.nome}', '${aluno.simade || ''}')" title="Remanejar estudante para outra turma">REMANEJAR</button>`
+          : '';
+        let btnEditar = (state.perfil === 'Secretaria' || state.perfil === 'Supervisao')
+          ? `<button class="btn-status-toggle btn-status-editar" onclick="event.stopPropagation(); abrirModalEditarEstudante('${aluno.nome}', '${aluno.simade || ''}')" title="Editar nome e SIMADE do estudante">EDITAR</button>`
+          : '';
 
         li.innerHTML = `
-          <div class="student-row-header" onclick="toggleHistorico(${index})" title="Clique para ver o histórico">
+          <div class="student-row-header" onclick="toggleHistorico(${index})">
             <div class="student-info-group">
-              <div class="simade" style="user-select:none; ${estiloNome}">${aluno.simade}</div>
-              <div class="student-name-container" style="user-select:none; ${estiloNome}">
-                <span class="student-name-text">${aluno.nome}</span>
+              <div class="simade" style="${estiloNome}">${aluno.simade}</div>
+              <div class="student-name-container">
+                <span class="student-name-text" style="${estiloNome}">${aluno.nome}</span>
                 ${alerta}
+                ${tagInativo}
+              </div>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                 ${btnStatus}
+                ${btnRemanejar}
+                ${btnEditar}
               </div>
             </div>
             <div class="student-stats-group">
               <div class="col-stat-item" style="color: ${corFrequencia}">${freqPercent}%</div>
-              <div class="col-stat-item" style="color: ${calcConsec >= 4 ? 'var(--danger-color)' : 'inherit'}">${calcConsec}</div>
+              <div class="col-stat-item">${calcConsec}</div>
               <div class="col-stat-item">${calcTotal}</div>
             </div>
           </div>
@@ -1931,6 +1925,24 @@
           </div>
         `;
         ul.appendChild(li);
+      });
+    }
+
+    function alternarStatusAlunoUI(nomeAluno, statusAtualInativo) {
+      const acao = statusAtualInativo ? "reativar" : "inativar e taxar";
+      mostrarConfirm(`Deseja realmente ${acao} o estudante "${nomeAluno}" em todas as guias da planilha?`, () => {
+        mostrarResultado('loading-inline');
+        google.script.run
+          .withSuccessHandler(res => {
+            mostrarModal("STATUS ATUALIZADO", res.mensagem || "Status atualizado com sucesso em todas as guias!", () => {
+              if (state.modo === 'relatorio_geral') carregarRelatorioGeralMatriz();
+              else abrirRelatorioTurma(state.turmaId);
+            });
+          })
+          .withFailureHandler(err => {
+            mostrarModal("ERRO", err.message || "Falha ao alterar status do estudante.");
+          })
+          .alternarStatusEstudante(state.turmaId, nomeAluno, !statusAtualInativo, state.perfil);
       });
     }
 
@@ -1946,7 +1958,6 @@
     function ordenarRelatorio() {
       relatorioOrdemCrescente = !relatorioOrdemCrescente;
       dadosRelatorioGeral.sort((a, b) => {
-        if (a.inativo !== b.inativo) return Number(a.inativo) - Number(b.inativo);
         if (relatorioOrdemCrescente) return a.faltasTotais - b.faltasTotais;
         return b.faltasTotais - a.faltasTotais;
       });
@@ -1954,12 +1965,7 @@
     }
 
     function ordenarPorOrdemAlfabetica() {
-      dadosRelatorioGeral.sort((a, b) => {
-        if (a.inativo !== b.inativo) return Number(a.inativo) - Number(b.inativo);
-        if (relatorioOrdemAZ) return (a.nome || '').localeCompare(b.nome || '');
-        return (b.nome || '').localeCompare(a.nome || '');
-      });
-      relatorioOrdemAZ = !relatorioOrdemAZ;
+      dadosRelatorioGeral.sort((a, b) => (a.nome || '').localeCompare(b.nome || ''));
       renderizarListaRelatorio();
     }
 
@@ -1974,8 +1980,9 @@
           const wrapper = document.getElementById('matriz-tabela-wrapper');
           let thDatas = dados.datas.map(d => `<th>${d}</th>`).join('');
 
-          let trs = dados.alunos.map(a => {
-            let estiloInativo = a.inativo ? 'text-decoration: line-through; opacity: 0.6;' : '';
+          let alunosOrdenados = (dados.alunos || []).slice().sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' }));
+
+          let trs = alunosOrdenados.map(a => {
             let tdsHist = a.historico.map(v => {
               let val = String(v).toUpperCase();
               let color = 'inherit';
@@ -1985,10 +1992,13 @@
               return `<td style="font-weight: 600; color: ${color};">${val}</td>`;
             }).join('');
 
+            let estiloLinhaInativo = a.inativo ? 'text-decoration: line-through; opacity: 0.6;' : '';
+            let tagMatrizInativo = a.inativo ? ' <small style="color:var(--secondary-text); font-weight:700; font-size:10px;">(INATIVO)</small>' : '';
+
             return `
-              <tr>
+              <tr style="${estiloLinhaInativo}">
                 <td style="color:var(--secondary-text); font-size:11px;">${a.simade || ''}</td>
-                <td class="col-nome" style="${estiloInativo}">${a.nome}</td>
+                <td class="col-nome">${a.nome}${tagMatrizInativo}</td>
                 ${tdsHist}
                 <td style="font-weight:600; color:var(--danger-color);">${a.totalFaltas}</td>
                 <td style="font-weight:600; color:${a.freqPercent < 75 ? 'var(--danger-color)' : 'var(--success-color)'};">${a.freqPercent}%</td>
@@ -2010,7 +2020,7 @@
               <tbody>${trs}</tbody>
             </table>
           `;
-        }).withFailureHandler(err => { mostrarModal("ERRO", err.message); mostrarResultado(''); })
+        })
         .getRelatorioGeralMatriz(state.turmaId, mesSelecionado);
     }
 
@@ -2031,7 +2041,7 @@
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
           } catch(e) { mostrarModal("ERRO", "Falha ao gerar o PDF localmente."); }
-        }).withFailureHandler(err => { mostrarModal("ERRO", err.message); mostrarResultado(''); })
+        })
         .exportarRelatorioGeralPDF(state.turmaId, mesSelecionado);
     }
   </script>
