@@ -1841,7 +1841,12 @@
            
            window.datasRelatorioGeral = dados.datas || []; 
            dadosRelatorioGeral = dados.alunos;
-           dadosRelatorioGeral.sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' }));
+           dadosRelatorioGeral.sort((a, b) => {
+             if (Number(!!a.inativo) !== Number(!!b.inativo)) {
+               return Number(!!a.inativo) - Number(!!b.inativo);
+             }
+             return (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' });
+           });
            renderizarListaRelatorio();
         })
         .getRelatorioTurma(turmaId, mesExtenso);
@@ -1958,6 +1963,9 @@
     function ordenarRelatorio() {
       relatorioOrdemCrescente = !relatorioOrdemCrescente;
       dadosRelatorioGeral.sort((a, b) => {
+        if (Number(!!a.inativo) !== Number(!!b.inativo)) {
+          return Number(!!a.inativo) - Number(!!b.inativo);
+        }
         if (relatorioOrdemCrescente) return a.faltasTotais - b.faltasTotais;
         return b.faltasTotais - a.faltasTotais;
       });
@@ -1965,7 +1973,12 @@
     }
 
     function ordenarPorOrdemAlfabetica() {
-      dadosRelatorioGeral.sort((a, b) => (a.nome || '').localeCompare(b.nome || ''));
+      dadosRelatorioGeral.sort((a, b) => {
+        if (Number(!!a.inativo) !== Number(!!b.inativo)) {
+          return Number(!!a.inativo) - Number(!!b.inativo);
+        }
+        return (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' });
+      });
       renderizarListaRelatorio();
     }
 
@@ -1980,7 +1993,12 @@
           const wrapper = document.getElementById('matriz-tabela-wrapper');
           let thDatas = dados.datas.map(d => `<th>${d}</th>`).join('');
 
-          let alunosOrdenados = (dados.alunos || []).slice().sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' }));
+          let alunosOrdenados = (dados.alunos || []).slice().sort((a, b) => {
+            if (Number(!!a.inativo) !== Number(!!b.inativo)) {
+              return Number(!!a.inativo) - Number(!!b.inativo);
+            }
+            return (a.nome || '').localeCompare(b.nome || '', 'pt-BR', { sensitivity: 'base' });
+          });
 
           let trs = alunosOrdenados.map(a => {
             let tdsHist = a.historico.map(v => {
