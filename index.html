@@ -1438,7 +1438,7 @@
               <div id="status-progress-bar-fill" class="status-progress-bar" style="width: 0%;"></div>
             </div>
             <div class="status-progress-footer">
-              <span id="status-progress-contagem">0 de 6 turmas verificadas</span>
+              <span id="status-progress-contagem">0 turmas verificadas</span>
               <span id="status-progress-detalhe">Consultando planilhas em tempo real...</span>
             </div>
           </div>
@@ -1619,12 +1619,23 @@
 
     // Catálogo oficial de turmas principais do diário local (exibidas na tela inicial e diários)
     const TURMAS_PRINCIPAIS_DIARIO = [
-      { id: "1-REG-01-MANHA-S", nome: "1º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1i4YhQ3zgUweRTlIWGcY5lLqIZGvVaen6dPt7D0Ro1fs" },
-      { id: "1-REG-02-MANHA-S", nome: "1º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1w64OmLVfSPPVyYElKc8rdAJwshePqm_d96zz1fZFOjw" },
-      { id: "2-REG-01-MANHA-S", nome: "2º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1MmJ7hSpo_T9phHWecrw0YOKTSV65IzOo70IOlnDo0mU" },
-      { id: "2-REG-02-MANHA-S", nome: "2º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1qxsunmYueNxmBu3JHJzbzcA_OVJ3VcZQQXHD4vR_36A" },
-      { id: "3-REG-01-MANHA-S", nome: "3º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1O2hREVvwEFExzX7D5bGOK3F6dtR3r5cFMoID281Lyc0" },
-      { id: "3-REG-02-MANHA-S", nome: "3º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1uKW_viRK3X9drJef19auOA7EIEcPgC0hrqqkmhUV12E" }
+      { id: "6-ANO-01-TARDE-S", nome: "6º ANO - 01", turno: "Tarde", unidade: "Sede", plan: "1cwlcnhIUCCAUDA2pIRmJUv8Yun57t_RrI3AwT51ed7U" },
+      { id: "6-ANO-02-TARDE-S", nome: "6º ANO - 02", turno: "Tarde", unidade: "Sede", plan: "165kFdkQBPyOT69i6AokZaqcpZaLWIpo0oKaeWsW2xq4" },
+      { id: "6-ANO-03-TARDE-S", nome: "6º ANO - 03", turno: "Tarde", unidade: "Sede", plan: "1BfG7cJvQ_n78F0lVT3rJes9vTvqkOLvJfSC27yjtotY" },
+      { id: "7-ANO-01-TARDE-S", nome: "7º ANO - 01", turno: "Tarde", unidade: "Sede", plan: "1JJvdfW5UzYt47TpSPYP7L-fq_c6u0UvH17JR7-7SNlE" },
+      { id: "7-ANO-02-TARDE-S", nome: "7º ANO - 02", turno: "Tarde", unidade: "Sede", plan: "1L5s3hziGkFiPc4uxSmOrrjALmtJqqoXRdmZ4-omBQ5M" },
+      { id: "7-ANO-03-TARDE-S", nome: "7º ANO - 03", turno: "Tarde", unidade: "Sede", plan: "1UTa2zCZJTvTNdp_2ItGURe23Y85p1G-O7c5fYog0sVk" },
+      { id: "8-ANO-01-TARDE-S", nome: "8º ANO - 01", turno: "Tarde", unidade: "Sede", plan: "1Ur88BSq2sByRp4jO0Hi6Rp4L-YwLWEDImKCZWvjPcDU" },
+      { id: "8-ANO-02-TARDE-S", nome: "8º ANO - 02", turno: "Tarde", unidade: "Sede", plan: "1lvyKEnziqZTauZHF7-wShbc8Dk_MH3mxNtQNXFTa3eU" },
+      { id: "8-ANO-03-TARDE-S", nome: "8º ANO - 03", turno: "Tarde", unidade: "Sede", plan: "1B_DGEy_OMkzWtiwCIOhvtIx3hkkpDRHah-7R8bmXEBs" },
+      { id: "8-ANO-04-TARDE-S", nome: "8º ANO - 04", turno: "Tarde", unidade: "Sede", plan: "1FjLSMX_7h3dN0oc5jmfIp4A8AiAl7EXgYEDvzDobCTg" },
+      { id: "9-ANO-01-TARDE-S", nome: "9º ANO - 01", turno: "Tarde", unidade: "Sede", plan: "1GwJ-izTjwWvFUsx-0se2eELtmEP2Hjn41U_zrS58pXs" },
+      { id: "9-ANO-02-TARDE-S", nome: "9º ANO - 02", turno: "Tarde", unidade: "Sede", plan: "1Y7w_X3lljNsZld4A6B2l5hqSbjGDrNLe1YX_A_3L1js" },
+      { id: "9-ANO-03-TARDE-S", nome: "9º ANO - 03", turno: "Tarde", unidade: "Sede", plan: "19zqCw-7fhCR5wzbGmTurTCRPBR1tFF2NfNz1oamifx8" },
+      { id: "9-ANO-04-TARDE-S", nome: "9º ANO - 04", turno: "Tarde", unidade: "Sede", plan: "1lirGnz9Mm3DwE16zTBZnKlgZBuWun7Tz84FogKb2wy4" },
+      { id: "1-REG-AD-TARDE-S", nome: "1º REG - ADM", turno: "Tarde", unidade: "Sede", plan: "1FKSG___00MPTBOTXphwu-0KVvRfLhMTOLgFanm5vgqg" },
+      { id: "1-REG-LO-TARDE-S", nome: "1º REG - LOG", turno: "Tarde", unidade: "Sede", plan: "1GLBmUB-95oiFtDQOthwuZdk5EzdkYwdmI-NRV80XcLE" },
+      { id: "1-REG-TI-TARDE-S", nome: "1º REG - TIM", turno: "Tarde", unidade: "Sede", plan: "1PSUm_S2IgWRHjuA_gLCJoun4fWfrfQlOXINn-upp77Q" }
     ];
 
     // Catálogo de turmas e planilhas configuradas exclusivamente para remanejamento geral (entre turnos e unidades)
@@ -1711,6 +1722,7 @@
       const catalogoRemanejamento = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
         ? TURMAS_CONFIG_REMANEJAMENTO
         : [];
+      const catalogo = [...turmasPrincipais, ...catalogoRemanejamento];
       
       if (prop === 'getTurmasDisponiveis') {
         return turmasPrincipais;
@@ -1947,21 +1959,28 @@
               return function(fn) { failureCb = fn; return proxy; };
             }
             return function(...args) {
+              const responderComDelaySeNecessario = (dados) => {
+                if (prop === 'salvarRegistroChamada') {
+                  setTimeout(() => successCb(dados), 1500);
+                } else {
+                  successCb(dados);
+                }
+              };
+
+              const directController = new AbortController();
+              const directTimeout = setTimeout(() => directController.abort(), 3200);
+
               fetch(GAS_WEB_APP_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ action: prop, args: args })
+                body: JSON.stringify({ action: prop, args: args }),
+                signal: directController.signal
               })
-              .then(res => res.json())
+              .then(res => {
+                clearTimeout(directTimeout);
+                return res.json();
+              })
               .then(data => {
-                const responderComDelaySeNecessario = (dados) => {
-                  if (prop === 'salvarRegistroChamada') {
-                    setTimeout(() => successCb(dados), 1500);
-                  } else {
-                    successCb(dados);
-                  }
-                };
-
                 if (data.status === 'error') {
                   const fallbackData = obterRespostaSimuladaGas(prop, args);
                   console.info("[GAS Runner] Erro no Web App, utilizando resposta simulada no preview:", data.message);
@@ -1971,21 +1990,21 @@
                 }
               })
               .catch(err => {
+                clearTimeout(directTimeout);
+                const proxyController = new AbortController();
+                const proxyTimeout = setTimeout(() => proxyController.abort(), 3500);
+
                 fetch('/api/gas-proxy', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ action: prop, args: args })
+                  body: JSON.stringify({ action: prop, args: args }),
+                  signal: proxyController.signal
                 })
-                .then(res => res.json())
+                .then(res => {
+                  clearTimeout(proxyTimeout);
+                  return res.json();
+                })
                 .then(data => {
-                  const responderComDelaySeNecessario = (dados) => {
-                    if (prop === 'salvarRegistroChamada') {
-                      setTimeout(() => successCb(dados), 1500);
-                    } else {
-                      successCb(dados);
-                    }
-                  };
-
                   if (data.status === 'error') {
                     const fallbackData = obterRespostaSimuladaGas(prop, args);
                     console.info("[GAS Runner] Web App indisponível no Google Drive, utilizando dados de simulação no preview:", data.message);
@@ -1995,13 +2014,10 @@
                   }
                 })
                 .catch(proxyErr => {
+                  clearTimeout(proxyTimeout);
                   const fallbackData = obterRespostaSimuladaGas(prop, args);
                   console.info("[GAS Runner] Modo offline/simulação ativo:", proxyErr);
-                  if (prop === 'salvarRegistroChamada') {
-                    setTimeout(() => successCb(fallbackData), 1500);
-                  } else {
-                    successCb(fallbackData);
-                  }
+                  responderComDelaySeNecessario(fallbackData);
                 });
               });
             };
@@ -2014,7 +2030,16 @@
     }
 
     let state = { perfil: '', unidade: '', turno: '', turmaId: '', turmaNome: '', modo: 'diario' };
-    let dbTurmas = [];
+    let dbTurmas = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO) && TURMAS_PRINCIPAIS_DIARIO.length > 0)
+      ? [...TURMAS_PRINCIPAIS_DIARIO]
+      : [
+          { id: "1-REG-01-MANHA-S", nome: "1º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1i4YhQ3zgUweRTlIWGcY5lLqIZGvVaen6dPt7D0Ro1fs" },
+          { id: "1-REG-02-MANHA-S", nome: "1º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1w64OmLVfSPPVyYElKc8rdAJwshePqm_d96zz1fZFOjw" },
+          { id: "2-REG-01-MANHA-S", nome: "2º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1MmJ7hSpo_T9phHWecrw0YOKTSV65IzOo70IOlnDo0mU" },
+          { id: "2-REG-02-MANHA-S", nome: "2º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1qxsunmYueNxmBu3JHJzbzcA_OVJ3VcZQQXHD4vR_36A" },
+          { id: "3-REG-01-MANHA-S", nome: "3º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1O2hREVvwEFExzX7D5bGOK3F6dtR3r5cFMoID281Lyc0" },
+          { id: "3-REG-02-MANHA-S", nome: "3º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1uKW_viRK3X9drJef19auOA7EIEcPgC0hrqqkmhUV12E" }
+        ];
     let dadosChamadaGeral = [];
     let dadosRelatorioGeral = [];
     let relatorioOrdemCrescente = false;
@@ -2029,24 +2054,30 @@
       try { history.replaceState({ view: 'login' }, '', '#login'); } catch(e){}
       viewAtual = 'login';
 
-      const catalogoInicial = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
-        ? [...TURMAS_PRINCIPAIS_DIARIO]
-        : [];
-      if (catalogoInicial.length > 0) {
-        dbTurmas = catalogoInicial;
-        atualizarInterface();
+      if (!dbTurmas || dbTurmas.length === 0) {
+        dbTurmas = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+          ? [...TURMAS_PRINCIPAIS_DIARIO]
+          : [];
       }
+      atualizarInterface();
 
-      google.script.run.withSuccessHandler(res => { 
-        if (res && Array.isArray(res) && res.length > 0) {
-          const idsPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
-            ? TURMAS_PRINCIPAIS_DIARIO.map(tp => tp.id)
-            : [];
-          const filtradas = res.filter(r => idsPrincipais.length === 0 || idsPrincipais.includes(r.id));
-          dbTurmas = filtradas.length > 0 ? filtradas : res; 
+      google.script.run
+        .withSuccessHandler(res => { 
+          if (res && Array.isArray(res) && res.length > 0) {
+            dbTurmas = res; 
+            atualizarInterface();
+          }
+        })
+        .withFailureHandler(err => {
+          console.warn("[GAS] Falha ao consultar turmas remotas, mantendo turmas disponíveis:", err);
+          if (!dbTurmas || dbTurmas.length === 0) {
+            dbTurmas = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+              ? [...TURMAS_PRINCIPAIS_DIARIO]
+              : [];
+          }
           atualizarInterface();
-        }
-      }).getTurmasDisponiveis();
+        })
+        .getTurmasDisponiveis();
       
       const hoje = new Date();
       const tzOffset = hoje.getTimezoneOffset() * 60000;
@@ -2608,11 +2639,11 @@
           : "Selecione uma turma para Ver Faltas";
       }
 
-      // Garante que APENAS turmas do diário local apareçam nos cards da tela inicial
-      const idsPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
-        ? TURMAS_PRINCIPAIS_DIARIO.map(tp => tp.id)
-        : [];
-      const turmasFiltradas = (dbTurmas || []).filter(t => idsPrincipais.length === 0 || idsPrincipais.includes(t.id));
+      // Garante que todas as turmas cadastradas para o diário apareçam nos cards da tela inicial
+      let turmasFiltradas = (dbTurmas && dbTurmas.length > 0)
+        ? dbTurmas
+        : ((typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO) && TURMAS_PRINCIPAIS_DIARIO.length > 0) ? TURMAS_PRINCIPAIS_DIARIO : []);
+
       const gridTurma = document.getElementById('grid-turma');
       gridTurma.innerHTML = '';
       
@@ -2622,10 +2653,10 @@
         turmasFiltradas.forEach(t => {
           const card = document.createElement('div');
           card.className = 'card-turma';
-          let tagSerie = t.nome.split('-')[0].trim();
+          let tagSerie = (t.nome || t.id || '').split('-')[0].trim();
           card.innerHTML = `
             <div class="tag-turma">${tagSerie}</div>
-            <div class="titulo-turma">${t.nome}</div>
+            <div class="titulo-turma">${t.nome || t.id}</div>
             <div class="info-turma">${t.unidade || ''} ${t.unidade && t.turno ? '•' : ''} ${t.turno || ''}</div>
             ${ehModoDiario ? '<div id="status-card-' + t.id + '" class="status-container-card"></div>' : ''}
           `;
@@ -2642,9 +2673,23 @@
           if (progressBar) progressBar.style.display = 'none';
         }
       } else {
-        gridTurma.innerHTML = '<span style="color:var(--secondary-text); font-size:14px; width:100%; font-weight:500;">Buscando turmas...</span>';
+        gridTurma.innerHTML = `
+          <div style="padding: 16px; text-align: center; width: 100%;">
+            <p style="color: var(--secondary-text); font-size: 14px; margin-bottom: 10px;">Carregando turmas cadastradas...</p>
+            <button class="btn-secondary" style="padding: 6px 14px; font-size: 12px;" onclick="restaurarTurmasPadrao()">
+              Exibir Turmas do Diário
+            </button>
+          </div>
+        `;
         document.getElementById('bloco-turma').style.display = 'block';
       }
+    }
+
+    function restaurarTurmasPadrao() {
+      dbTurmas = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO) && TURMAS_PRINCIPAIS_DIARIO.length > 0)
+        ? [...TURMAS_PRINCIPAIS_DIARIO]
+        : [];
+      atualizarInterface();
     }
 
     function executarAcaoCard(t, card, gridTurma) {
@@ -3439,11 +3484,10 @@
       const contagemEl = document.getElementById('status-progress-contagem');
       const detalheEl = document.getElementById('status-progress-detalhe');
 
-      // Turmas a serem verificadas: apenas turmas do diário local
-      const idsPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
-        ? TURMAS_PRINCIPAIS_DIARIO.map(tp => tp.id)
-        : [];
-      const turmasAlvo = (dbTurmas || []).filter(t => idsPrincipais.length === 0 || idsPrincipais.includes(t.id));
+      // Turmas a serem verificadas: todas as turmas configuradas para o diário
+      const turmasAlvo = (dbTurmas && dbTurmas.length > 0)
+        ? dbTurmas
+        : ((typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO)) ? TURMAS_PRINCIPAIS_DIARIO : []);
 
       if (!turmasAlvo || turmasAlvo.length === 0) {
         if (progressBar) progressBar.style.display = 'none';
