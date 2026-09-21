@@ -420,11 +420,46 @@
       letter-spacing: 0.5px;
     }
     
+    /* Dica na tela inicial para Secretaria e Supervisão */
+    .dica-status-admin {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-sm);
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    .dica-status-icone {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #dbeafe;
+      color: #1d4ed8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .dica-status-corpo {
+      flex: 1;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #1e3a8a;
+    }
+    .dica-status-corpo strong {
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+
     /* Barra de progresso para o carregamento do status das turmas (Secretaria e Supervisão) */
     .status-progress-wrapper {
-      margin-top: 8px;
-      margin-bottom: 12px;
-      padding: 10px 14px;
+      margin-top: 6px;
+      margin-bottom: 14px;
+      padding: 12px 16px;
       background: #f8fafc;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
@@ -434,34 +469,58 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .status-progress-label {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.7px;
       color: var(--brand-color);
       display: flex;
       align-items: center;
       gap: 6px;
     }
+    .status-progress-percent-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--brand-color);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 2px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+    }
     .status-progress-track {
       width: 100%;
-      height: 4px;
+      height: 7px;
       background-color: #e2e8f0;
       border-radius: 9999px;
       overflow: hidden;
       position: relative;
     }
     .status-progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, var(--brand-color), #a855f7);
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand-color), #2563eb);
       border-radius: 9999px;
-      animation: progress-indeterminate 1.4s ease-in-out infinite;
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+    .status-progress-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--secondary-text);
+      font-weight: 500;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .icon-spin {
+      animation: spin 1.2s linear infinite;
     }
 
     #loading-inline { 
@@ -1025,6 +1084,8 @@
     <symbol id="icon-nav-diario" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></symbol>
     <symbol id="icon-nav-relatorio" viewBox="0 0 24 24"><path d="M4 19h16v2H2V3h2v16zm4-7h2.5v5H8v-5zm5-6h2.5v11H13V6zm5 4h2.5v7H18v-7z"/></symbol>
     <symbol id="icon-nav-atestado" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></symbol>
+    <symbol id="icon-tip" viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6C7.8 13.16 7 11.18 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.18-.8 4.16-2.15 5.1z"/></symbol>
+    <symbol id="icon-sync" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></symbol>
   </svg>
 
   <aside id="custom-modal" class="modal-overlay">
@@ -1219,9 +1280,52 @@
 
         <div style="display:flex; gap:8px;">
           <button class="btn-principal btn-secondary" style="margin:0; font-size:12.5px; padding:9px 14px; width:auto;" onclick="fecharModalDetalhesAtestado()">Fechar</button>
-          <button class="btn-principal" style="background-color:#2563eb; color:white; border:none; margin:0; font-size:12.5px; padding:9px 14px; display:inline-flex; align-items:center; gap:6px; width:auto;" onclick="acionarEditarAtestadoAtual()">
+          <button id="btn-editar-atestado-detalhes" class="btn-principal" style="background-color:#2563eb; color:white; border:none; margin:0; font-size:12.5px; padding:9px 14px; display:inline-flex; align-items:center; gap:6px; width:auto;" onclick="acionarEditarAtestadoAtual()">
             ✏️ Editar
           </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal de Salvamento e Confirmação na Planilha -->
+  <aside id="modal-salvando-chamada" class="modal-overlay" style="z-index: 2500 !important; background: rgba(15, 23, 42, 0.82); backdrop-filter: blur(6px);">
+    <div class="modal-box" style="max-width: 440px; text-align: center; padding: 32px 26px;">
+      <div style="width: 58px; height: 58px; border-radius: 50%; background: rgba(37, 99, 235, 0.12); color: var(--brand-color); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+        <svg class="icon-spin" id="salvando-icon-spinner" style="width: 28px; height: 28px; fill: currentColor;"><use href="#icon-sync"></use></svg>
+        <svg id="salvando-icon-check" style="width: 32px; height: 32px; fill: #10b981; display: none;"><use href="#icon-check"></use></svg>
+      </div>
+
+      <h3 id="salvando-titulo" style="margin-bottom: 6px; font-size: 18px; color: var(--primary-text);">Gravando Chamada na Planilha</h3>
+      <p id="salvando-subtitulo" style="font-size: 13px; color: var(--secondary-text); margin-bottom: 18px;">
+        Sincronizando frequências com o Google Sheets...
+      </p>
+
+      <!-- Badge com turma, data e contagem de alunos -->
+      <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 18px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <span style="font-size: 11px; font-weight: 700; color: var(--secondary-text); text-transform: uppercase;">Turma</span>
+          <span style="font-size: 11px; font-weight: 700; color: var(--brand-color); text-transform: uppercase;" id="salvando-data-chamada">--/--</span>
+        </div>
+        <div id="salvando-turma-nome" style="font-size: 14.5px; font-weight: 700; color: var(--primary-text);">Turma Selecionada</div>
+        <div id="salvando-qtd-estudantes" style="font-size: 12px; color: var(--secondary-text); margin-top: 3px;">32 estudantes na lista de presença</div>
+      </div>
+
+      <!-- Barra de progresso real -->
+      <div style="background: #e2e8f0; border-radius: 9999px; height: 8px; overflow: hidden; position: relative; margin-bottom: 8px;">
+        <div id="salvando-barra-progresso" style="height: 100%; width: 0%; background: linear-gradient(90deg, #2563eb, #10b981); border-radius: 9999px; transition: width 0.35s ease;"></div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; color: var(--secondary-text); margin-bottom: 18px;">
+        <span id="salvando-status-etapa">Iniciando gravação...</span>
+        <span id="salvando-percentual" style="color: var(--brand-color);">0%</span>
+      </div>
+
+      <!-- Alerta de segurança contra saída acidental -->
+      <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 10px 12px; font-size: 11.5px; color: #92400e; text-align: left; display: flex; align-items: flex-start; gap: 8px; line-height: 1.45;">
+        <span style="font-size: 14px; line-height: 1;">⚠️</span>
+        <div>
+          <strong>Aviso de Segurança:</strong> Não feche esta janela nem saia da página antes da confirmação para evitar que a chamada não seja salva na planilha.
         </div>
       </div>
     </div>
@@ -1311,17 +1415,31 @@
             <span class="selection-label" id="label-turmas-acao" style="margin-bottom: 0;">Selecione uma turma para abrir</span>
           </div>
 
-          <!-- Barra de progresso de verificação do status das chamadas (Secretaria e Supervisão) -->
-          <div id="status-turmas-progress-bar" class="status-progress-wrapper">
+          <!-- Dica informativa para perfis de Secretaria e Supervisão -->
+          <div id="dica-status-turmas" class="dica-status-admin" style="display: none;">
+            <div class="dica-status-icone">
+              <svg style="width: 15px; height: 15px; fill: currentColor;"><use href="#icon-tip"></use></svg>
+            </div>
+            <div class="dica-status-corpo">
+              <strong>Dica recomendada:</strong> É recomendado aguardar a verificação do status das turmas antes de abrir os diários, garantindo que o status de presença e as planilhas estejam completamente sincronizados.
+            </div>
+          </div>
+
+          <!-- Barra de progresso de verificação do status das chamadas com porcentagem real (Secretaria e Supervisão) -->
+          <div id="status-turmas-progress-bar" class="status-progress-wrapper" style="display: none;">
             <div class="status-progress-header">
               <span class="status-progress-label">
-                <svg style="width: 13px; height: 13px; fill: currentColor;"><use href="#icon-sync"></use></svg>
-                Verificando status das chamadas...
+                <svg class="icon-spin" style="width: 13px; height: 13px; fill: currentColor;"><use href="#icon-sync"></use></svg>
+                <span id="status-progress-label-text">Verificando status das chamadas...</span>
               </span>
-              <span style="font-size: 11px; color: var(--secondary-text); font-weight: 500;">Consultando planilhas</span>
+              <span id="status-progress-percent" class="status-progress-percent-badge">0%</span>
             </div>
             <div class="status-progress-track">
-              <div class="status-progress-bar"></div>
+              <div id="status-progress-bar-fill" class="status-progress-bar" style="width: 0%;"></div>
+            </div>
+            <div class="status-progress-footer">
+              <span id="status-progress-contagem">0 de 6 turmas verificadas</span>
+              <span id="status-progress-detalhe">Consultando planilhas em tempo real...</span>
             </div>
           </div>
 
@@ -1499,7 +1617,17 @@
     const ROTULO_IDENTIFICADOR = "SIMADE";
     const SENHA_PADRAO_ACESSO = "portomario26";
 
-    // Catálogo de turmas e planilhas configuradas para remanejamento geral (entre turnos e unidades)
+    // Catálogo oficial de turmas principais do diário local (exibidas na tela inicial e diários)
+    const TURMAS_PRINCIPAIS_DIARIO = [
+      { id: "1-REG-01-MANHA-S", nome: "1º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1i4YhQ3zgUweRTlIWGcY5lLqIZGvVaen6dPt7D0Ro1fs" },
+      { id: "1-REG-02-MANHA-S", nome: "1º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1w64OmLVfSPPVyYElKc8rdAJwshePqm_d96zz1fZFOjw" },
+      { id: "2-REG-01-MANHA-S", nome: "2º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1MmJ7hSpo_T9phHWecrw0YOKTSV65IzOo70IOlnDo0mU" },
+      { id: "2-REG-02-MANHA-S", nome: "2º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1qxsunmYueNxmBu3JHJzbzcA_OVJ3VcZQQXHD4vR_36A" },
+      { id: "3-REG-01-MANHA-S", nome: "3º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1O2hREVvwEFExzX7D5bGOK3F6dtR3r5cFMoID281Lyc0" },
+      { id: "3-REG-02-MANHA-S", nome: "3º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1uKW_viRK3X9drJef19auOA7EIEcPgC0hrqqkmhUV12E" }
+    ];
+
+    // Catálogo de turmas e planilhas configuradas exclusivamente para remanejamento geral (entre turnos e unidades)
     const TURMAS_CONFIG_REMANEJAMENTO = [
       { id: "1-REG-01-MANHA-S", nome: "1º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1sa87ELHFQFYYtoxN2jvYphtNEFGRVRtbpoyx9AiuvnY" },
       { id: "1-REG-02-MANHA-S", nome: "1º REG - 02", turno: "Manhã", unidade: "Sede", plan: "14xtJO7ZOWBBh4nhqVkc77Qo8nBkMNl2nF2HuiMNJaSs" },
@@ -1577,12 +1705,25 @@
     ];
 
     function obterRespostaSimuladaGas(prop, args) {
-      const catalogo = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
+      const turmasPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+        ? TURMAS_PRINCIPAIS_DIARIO
+        : [];
+      const catalogoRemanejamento = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
         ? TURMAS_CONFIG_REMANEJAMENTO
         : [];
       
-      if (prop === 'getTurmasDisponiveis' || prop === 'getTurmasRemanejamento') {
-        return catalogo;
+      if (prop === 'getTurmasDisponiveis') {
+        return turmasPrincipais;
+      }
+
+      if (prop === 'getTurmasRemanejamento') {
+        return catalogoRemanejamento;
+      }
+
+      if (prop === 'getStatusTurma') {
+        const turmaId = args[0] || '';
+        const statusSimulado = (turmaId.includes('1-REG-01') || turmaId.includes('2-REG-01') || turmaId.includes('3-REG-01')) ? 'Realizada' : 'Pendente';
+        return { id: turmaId, status: statusSimulado };
       }
       
       if (prop === 'getDadosChamada') {
@@ -1639,8 +1780,10 @@
         return res;
       }
 
-      if (prop === 'salvarChamada') {
-        return { sucesso: true, mensagem: "Chamada da turma salva com sucesso no sistema!" };
+      if (prop === 'salvarChamada' || prop === 'salvarRegistroChamada') {
+        const turmaId = args[0] || '';
+        const tObj = catalogo.find(t => t.id === turmaId) || { nome: turmaId };
+        return "Chamada da turma " + (tObj.nome || turmaId) + " salva com sucesso na planilha!";
       }
 
       if (prop === 'remanejarEstudante') {
@@ -1713,6 +1856,14 @@
 
         const chaveUpper = String(nomeEstudante).toUpperCase().trim();
 
+        const aluno = SIMULACAO_ESTUDANTES_PADRAO.find(a => 
+          String(a.nome || '').toUpperCase().trim() === chaveUpper || 
+          String(a.simade || '').toUpperCase().trim() === chaveUpper
+        );
+        if (aluno && aluno.inativo) {
+          throw new Error("Estudantes INATIVOS não podem ter atestado médico cadastrado.");
+        }
+
         // Registra o atestado na memória da simulação
         if (typeof window !== 'undefined') {
           if (!window._ATESTADOS_SIMULADOS) window._ATESTADOS_SIMULADOS = {};
@@ -1727,12 +1878,9 @@
           };
         }
 
-        const aluno = SIMULACAO_ESTUDANTES_PADRAO.find(a => 
-          String(a.nome || '').toUpperCase().trim() === chaveUpper || 
-          String(a.simade || '').toUpperCase().trim() === chaveUpper
-        );
         if (aluno) {
           aluno.statusHoje = 'A';
+          aluno.status = 'A';
           aluno.atestado = true;
           aluno.faltaJustificada = true;
         }
@@ -1754,6 +1902,11 @@
 
         if (typeof window !== 'undefined' && window._ATESTADOS_SIMULADOS) {
           delete window._ATESTADOS_SIMULADOS[chaveUpper];
+          for (const k of Object.keys(window._ATESTADOS_SIMULADOS)) {
+            if (k.toUpperCase().trim() === chaveUpper || chaveUpper.includes(k.toUpperCase().trim())) {
+              delete window._ATESTADOS_SIMULADOS[k];
+            }
+          }
         }
 
         const aluno = SIMULACAO_ESTUDANTES_PADRAO.find(a => 
@@ -1762,8 +1915,13 @@
         );
         if (aluno) {
           aluno.statusHoje = '•';
+          aluno.status = '•';
           aluno.atestado = false;
+          aluno.atestadoInfo = null;
           aluno.faltaJustificada = false;
+          if (Array.isArray(aluno.historico)) {
+            aluno.historico = aluno.historico.map(h => h === 'A' ? '•' : h);
+          }
         }
 
         return {
@@ -1796,10 +1954,18 @@
               })
               .then(res => res.json())
               .then(data => {
+                const responderComDelaySeNecessario = (dados) => {
+                  if (prop === 'salvarRegistroChamada') {
+                    setTimeout(() => successCb(dados), 1500);
+                  } else {
+                    successCb(dados);
+                  }
+                };
+
                 if (data.status === 'error') {
                   const fallbackData = obterRespostaSimuladaGas(prop, args);
                   console.info("[GAS Runner] Erro no Web App, utilizando resposta simulada no preview:", data.message);
-                  successCb(fallbackData);
+                  responderComDelaySeNecessario(fallbackData);
                 } else {
                   successCb(data.result);
                 }
@@ -1812,10 +1978,18 @@
                 })
                 .then(res => res.json())
                 .then(data => {
+                  const responderComDelaySeNecessario = (dados) => {
+                    if (prop === 'salvarRegistroChamada') {
+                      setTimeout(() => successCb(dados), 1500);
+                    } else {
+                      successCb(dados);
+                    }
+                  };
+
                   if (data.status === 'error') {
                     const fallbackData = obterRespostaSimuladaGas(prop, args);
                     console.info("[GAS Runner] Web App indisponível no Google Drive, utilizando dados de simulação no preview:", data.message);
-                    successCb(fallbackData);
+                    responderComDelaySeNecessario(fallbackData);
                   } else {
                     successCb(data.result);
                   }
@@ -1823,7 +1997,11 @@
                 .catch(proxyErr => {
                   const fallbackData = obterRespostaSimuladaGas(prop, args);
                   console.info("[GAS Runner] Modo offline/simulação ativo:", proxyErr);
-                  successCb(fallbackData);
+                  if (prop === 'salvarRegistroChamada') {
+                    setTimeout(() => successCb(fallbackData), 1500);
+                  } else {
+                    successCb(fallbackData);
+                  }
                 });
               });
             };
@@ -1851,8 +2029,8 @@
       try { history.replaceState({ view: 'login' }, '', '#login'); } catch(e){}
       viewAtual = 'login';
 
-      const catalogoInicial = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
-        ? [...TURMAS_CONFIG_REMANEJAMENTO]
+      const catalogoInicial = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+        ? [...TURMAS_PRINCIPAIS_DIARIO]
         : [];
       if (catalogoInicial.length > 0) {
         dbTurmas = catalogoInicial;
@@ -1861,7 +2039,11 @@
 
       google.script.run.withSuccessHandler(res => { 
         if (res && Array.isArray(res) && res.length > 0) {
-          dbTurmas = res; 
+          const idsPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+            ? TURMAS_PRINCIPAIS_DIARIO.map(tp => tp.id)
+            : [];
+          const filtradas = res.filter(r => idsPrincipais.length === 0 || idsPrincipais.includes(r.id));
+          dbTurmas = filtradas.length > 0 ? filtradas : res; 
           atualizarInterface();
         }
       }).getTurmasDisponiveis();
@@ -2404,6 +2586,11 @@
       if (progressBar && (!ehAdmin || state.modo !== 'diario')) {
         progressBar.style.display = 'none';
       }
+
+      const dicaStatus = document.getElementById('dica-status-turmas');
+      if (dicaStatus) {
+        dicaStatus.style.display = (ehAdmin && state.modo === 'diario') ? 'flex' : 'none';
+      }
       
       if (state.modo === 'atestados') {
         document.getElementById('bloco-data').style.display = 'none';
@@ -2421,7 +2608,11 @@
           : "Selecione uma turma para Ver Faltas";
       }
 
-      const turmasFiltradas = dbTurmas;
+      // Garante que APENAS turmas do diário local apareçam nos cards da tela inicial
+      const idsPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+        ? TURMAS_PRINCIPAIS_DIARIO.map(tp => tp.id)
+        : [];
+      const turmasFiltradas = (dbTurmas || []).filter(t => idsPrincipais.length === 0 || idsPrincipais.includes(t.id));
       const gridTurma = document.getElementById('grid-turma');
       gridTurma.innerHTML = '';
       
@@ -2612,14 +2803,14 @@
           listaAlunosAtestadoAtual = alunos;
           datasPlanilhaAtestado = (payload && payload.datas) ? payload.datas : [];
 
-          // Preenche o seletor do modal
+          // Preenche o seletor do modal (apenas estudantes ATIVOS)
           const selectAlunos = document.getElementById('select-estudante-atestado');
           if (selectAlunos) {
+            const alunosAtivos = alunos.filter(a => !a.inativo);
             selectAlunos.innerHTML = '<option value="">-- Selecione o Estudante --</option>' + 
-              alunos.map(a => {
-                const rotuloInativo = a.inativo ? ' (INATIVO)' : '';
+              alunosAtivos.map(a => {
                 const simadeText = a.simade ? `${a.simade} - ` : '';
-                return `<option value="${a.nome}">${simadeText}${a.nome}${rotuloInativo}</option>`;
+                return `<option value="${a.nome}">${simadeText}${a.nome}</option>`;
               }).join('');
           }
 
@@ -2789,7 +2980,21 @@
         listaEstudantesAtestadoAtualFiltrada = filtrados;
 
         let botoesAcaoHtml = '';
-        if (atestado.temAtestado) {
+        if (inativo) {
+          if (atestado.temAtestado) {
+            botoesAcaoHtml = `
+              <button type="button" class="btn-acao-atestado btn-atestado-detalhes" onclick="abrirModalDetalhesAtestadoPorIndice(${idx})" title="Ver detalhes ou excluir atestado deste estudante">
+                🔍 Consultar / Excluir
+              </button>
+            `;
+          } else {
+            botoesAcaoHtml = `
+              <span style="font-size:11px; font-weight:600; color:#94a3b8; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:5px 8px; display:inline-flex; align-items:center; gap:4px;" title="Estudantes inativos não podem receber lançamento de atestado">
+                🔒 Inativo (Bloqueado)
+              </span>
+            `;
+          }
+        } else if (atestado.temAtestado) {
           botoesAcaoHtml = `
             <button type="button" class="btn-acao-atestado btn-atestado-detalhes" onclick="abrirModalDetalhesAtestadoPorIndice(${idx})" title="Ver detalhes, editar ou excluir atestado">
               🔍 Consultar / Alterar
@@ -2841,6 +3046,10 @@
     function abrirModalCadastrarAtestadoPorIndice(idx) {
       const item = listaEstudantesAtestadoAtualFiltrada[idx];
       if (!item || !item.aluno) return;
+      if (item.aluno.inativo) {
+        mostrarModal("ESTUDANTE INATIVO", "Estudantes INATIVOS não podem ter a opção de cadastrar atestado.");
+        return;
+      }
       abrirModalCadastrarAtestadoPara(item.aluno.nome, item.aluno.simade);
     }
 
@@ -2851,6 +3060,17 @@
     }
 
     function abrirModalCadastrarAtestadoPara(nomeOpcional, simadeOpcional) {
+      if (nomeOpcional) {
+        const alunoAlvo = dadosAlunosAtestadoTurma.find(a => 
+          String(a.nome || '').toUpperCase().trim() === String(nomeOpcional).toUpperCase().trim() ||
+          String(a.simade || '').toUpperCase().trim() === String(nomeOpcional).toUpperCase().trim()
+        );
+        if (alunoAlvo && alunoAlvo.inativo) {
+          mostrarModal("ESTUDANTE INATIVO", "Estudantes INATIVOS não podem ter a opção de cadastrar atestado.");
+          return;
+        }
+      }
+
       limparFormularioAtestado();
       modoEdicaoAtestado = false;
       const titulo = document.getElementById('form-atestado-titulo');
@@ -2959,6 +3179,11 @@
         divObs.innerText = atestado.obs ? atestado.obs : 'Nenhuma observação ou CID informado no registro.';
       }
 
+      const btnEditar = document.getElementById('btn-editar-atestado-detalhes');
+      if (btnEditar) {
+        btnEditar.style.display = aluno.inativo ? 'none' : 'inline-flex';
+      }
+
       const modal = document.getElementById('modal-detalhes-atestado');
       if (modal) {
         modal.style.display = 'flex';
@@ -2977,6 +3202,10 @@
     function acionarEditarAtestadoAtual() {
       if (!estudanteAtestadoSelecionado) return;
       const aluno = estudanteAtestadoSelecionado;
+      if (aluno.inativo) {
+        mostrarModal("AÇÃO NÃO PERMITIDA", "Estudantes INATIVOS não podem ter atestado médico cadastrado ou editado.");
+        return;
+      }
       const atestado = extrairDadosAtestado(aluno);
 
       fecharModalDetalhesAtestado();
@@ -3039,10 +3268,43 @@
       fecharModalFormAtestado(true);
       mostrarResultado('loading-inline', 'Excluindo Atestado Médico', 'Removendo registros de abono da planilha...');
 
+      const nomeUpperAlvo = String(nomeEstudante || '').toUpperCase().trim();
+
+      // Limpeza imediata no cache de atestados simulados
+      if (typeof window !== 'undefined' && window._ATESTADOS_SIMULADOS) {
+        delete window._ATESTADOS_SIMULADOS[nomeUpperAlvo];
+        for (const k of Object.keys(window._ATESTADOS_SIMULADOS)) {
+          if (k.toUpperCase().trim() === nomeUpperAlvo || nomeUpperAlvo.includes(k.toUpperCase().trim())) {
+            delete window._ATESTADOS_SIMULADOS[k];
+          }
+        }
+      }
+
+      // Limpeza imediata na lista em memória para atualização instantânea
+      const limparRegistroDoAluno = (a) => {
+        if (!a) return;
+        const n = String(a.nome || '').toUpperCase().trim();
+        const s = String(a.simade || '').toUpperCase().trim();
+        if (n === nomeUpperAlvo || s === nomeUpperAlvo || (n && nomeUpperAlvo.includes(n))) {
+          a.atestado = false;
+          a.status = a.inativo ? '--' : '•';
+          a.statusHoje = a.inativo ? '--' : '•';
+          a.atestadoInfo = null;
+          a.faltaJustificada = false;
+          if (Array.isArray(a.historico)) {
+            a.historico = a.historico.map(h => h === 'A' ? (a.inativo ? '--' : '•') : h);
+          }
+        }
+      };
+
+      if (Array.isArray(dadosAlunosAtestadoTurma)) dadosAlunosAtestadoTurma.forEach(limparRegistroDoAluno);
+      if (Array.isArray(listaAlunosAtestadoAtual)) listaAlunosAtestadoAtual.forEach(limparRegistroDoAluno);
+
       google.script.run
         .withSuccessHandler(res => {
+          recarregarDadosAtestadosTurma(true);
           mostrarModal("ATESTADO EXCLUÍDO", (res && res.mensagem) ? res.mensagem : "Atestado médico excluído com sucesso!", () => {
-            recarregarDadosAtestadosTurma();
+            renderizarListaEstudantesAtestado();
           });
         })
         .withFailureHandler(err => {
@@ -3088,6 +3350,15 @@
 
       if (!nomeEstudante) {
         mostrarModal("ATENÇÃO", "Por favor, selecione o estudante que apresentou o atestado médico.");
+        return;
+      }
+
+      const alunoAlvo = dadosAlunosAtestadoTurma.find(a => 
+        String(a.nome || '').toUpperCase().trim() === String(nomeEstudante).toUpperCase().trim() ||
+        String(a.simade || '').toUpperCase().trim() === String(nomeEstudante).toUpperCase().trim()
+      );
+      if (alunoAlvo && alunoAlvo.inativo) {
+        mostrarModal("AÇÃO NÃO PERMITIDA", "Estudantes INATIVOS não podem ter a opção de cadastrar atestado.");
         return;
       }
 
@@ -3149,6 +3420,8 @@
     window.alternarFiltroAtestados = alternarFiltroAtestados;
     window.filtrarListaEstudantesAtestado = filtrarListaEstudantesAtestado;
 
+    let statusCheckCounter = 0;
+
     function carregarStatusDosCards() {
       // Indicador de status da chamada é exclusivo do modo "CHAMADA / DIÁRIO".
       // Não deve ser executado ou exibido em "RELATÓRIO GERAL (MÊS)" nem em "ATESTADOS".
@@ -3158,31 +3431,56 @@
         return;
       }
 
-      const todosBadges = document.querySelectorAll('.status-container-card');
-      if (!todosBadges || todosBadges.length === 0) return;
-
       const ehAdmin = state.perfil === 'Supervisao' || state.perfil === 'Secretaria';
       const progressBar = document.getElementById('status-turmas-progress-bar');
+      const barFill = document.getElementById('status-progress-bar-fill');
+      const pctBadge = document.getElementById('status-progress-percent');
+      const labelText = document.getElementById('status-progress-label-text');
+      const contagemEl = document.getElementById('status-progress-contagem');
+      const detalheEl = document.getElementById('status-progress-detalhe');
 
-      // Exibe a barra de progresso nos perfis de Secretaria e Supervisão
-      if (ehAdmin && progressBar) {
-        progressBar.style.display = 'block';
+      // Turmas a serem verificadas: apenas turmas do diário local
+      const idsPrincipais = (typeof TURMAS_PRINCIPAIS_DIARIO !== 'undefined' && Array.isArray(TURMAS_PRINCIPAIS_DIARIO))
+        ? TURMAS_PRINCIPAIS_DIARIO.map(tp => tp.id)
+        : [];
+      const turmasAlvo = (dbTurmas || []).filter(t => idsPrincipais.length === 0 || idsPrincipais.includes(t.id));
+
+      if (!turmasAlvo || turmasAlvo.length === 0) {
+        if (progressBar) progressBar.style.display = 'none';
+        return;
       }
 
-      // Feedback visual em cada card enquanto carrega para perfis administrativos
-      if (ehAdmin) {
-        todosBadges.forEach(b => {
-          b.innerHTML = '<span class="badge-loading-card">Consultando...</span>';
-        });
-      } else {
-        // No perfil do Professor, aplica status já salvo na sessão
-        dbTurmas.forEach(t => {
+      // No perfil do Professor, aplica status já salvo na sessão sem exibir barra de progresso
+      if (!ehAdmin) {
+        if (progressBar) progressBar.style.display = 'none';
+        turmasAlvo.forEach(t => {
           const divStatus = document.getElementById(`status-card-${t.id}`);
           if (divStatus && statusOtimistaTurmas[t.id]) {
             divStatus.innerHTML = `<span class="badge-sucesso-card">${statusOtimistaTurmas[t.id]}</span>`;
           }
         });
+        return;
       }
+
+      // Para Secretaria e Supervisão: inicializa verificação com porcentagem real do carregamento
+      const checkId = ++statusCheckCounter;
+      const totalTurmas = turmasAlvo.length;
+      let turmasConcluidas = 0;
+
+      // Coloca os badges de cada card em estado "Consultando..."
+      turmasAlvo.forEach(t => {
+        const divStatus = document.getElementById(`status-card-${t.id}`);
+        if (divStatus) {
+          divStatus.innerHTML = '<span class="badge-loading-card">Consultando...</span>';
+        }
+      });
+
+      if (progressBar) progressBar.style.display = 'block';
+      if (barFill) barFill.style.width = '0%';
+      if (pctBadge) pctBadge.innerText = '0%';
+      if (labelText) labelText.innerText = 'Verificando status das chamadas...';
+      if (contagemEl) contagemEl.innerText = `0 de ${totalTurmas} turmas verificadas`;
+      if (detalheEl) detalheEl.innerText = 'Iniciando verificação...';
 
       let dataUsada = new Date();
       let inputD = document.getElementById('input-data') ? document.getElementById('input-data').value : '';
@@ -3190,38 +3488,98 @@
         dataUsada = new Date(inputD + 'T12:00:00');
       }
 
-      let dataFormatadaLocal = formatarDataBR(dataUsada);
-      let meses = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
-      let mesExtensoLocal = meses[dataUsada.getMonth()];
+      const dataFormatadaLocal = formatarDataBR(dataUsada);
+      const meses = ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"];
+      const mesExtensoLocal = meses[dataUsada.getMonth()];
 
-      google.script.run
-        .withSuccessHandler(turmasStatus => {
-          if (progressBar) progressBar.style.display = 'none';
-          if (state.modo !== 'diario') return;
+      function aplicarBadgeTurma(turmaId, status) {
+        const divStatus = document.getElementById(`status-card-${turmaId}`);
+        if (!divStatus) return;
+        if (statusOtimistaTurmas[turmaId]) {
+          divStatus.innerHTML = `<span class="badge-sucesso-card">${statusOtimistaTurmas[turmaId]}</span>`;
+        } else if (status === 'Pendente') {
+          divStatus.innerHTML = '<span class="badge-alerta-card">Pendente</span>';
+        } else if (status === 'Realizada') {
+          divStatus.innerHTML = '<span class="badge-sucesso-card">Realizada</span>';
+        } else if (status === 'SEM AULA') {
+          divStatus.innerHTML = '<span class="badge-sem-aula-card">SEM AULA</span>';
+        } else {
+          divStatus.innerHTML = `<span class="badge-sem-aula-card">${status || 'Pendente'}</span>`;
+        }
+      }
 
-          if (Array.isArray(turmasStatus)) {
-            turmasStatus.forEach(t => {
-              const divStatus = document.getElementById(`status-card-${t.id}`);
-              if (divStatus) {
-                if (statusOtimistaTurmas[t.id]) {
-                  divStatus.innerHTML = `<span class="badge-sucesso-card">${statusOtimistaTurmas[t.id]}</span>`;
-                } else if (t.status === 'Pendente') {
-                  divStatus.innerHTML = `<span class="badge-alerta-card">Pendente</span>`;
-                } else if (t.status === 'Realizada') {
-                  divStatus.innerHTML = `<span class="badge-sucesso-card">Realizada</span>`;
-                } else if (t.status === 'SEM AULA') {
-                  divStatus.innerHTML = `<span class="badge-sem-aula-card">SEM AULA</span>`;
-                } else {
-                  divStatus.innerHTML = `<span class="badge-sem-aula-card">${t.status}</span>`;
-                }
-              }
-            });
-          }
-        })
-        .withFailureHandler(() => {
-          if (progressBar) progressBar.style.display = 'none';
-        })
-        .getPainelMonitoramento(null, null, dataFormatadaLocal, mesExtensoLocal, {});
+      function atualizarProgressoUI(concluidas, nomeTurmaProcessando) {
+        if (checkId !== statusCheckCounter || state.modo !== 'diario') return;
+        const pct = Math.round((concluidas / totalTurmas) * 100);
+        if (barFill) barFill.style.width = pct + '%';
+        if (pctBadge) pctBadge.innerText = pct + '%';
+        if (contagemEl) contagemEl.innerText = `${concluidas} de ${totalTurmas} turmas verificadas`;
+
+        if (concluidas >= totalTurmas) {
+          if (labelText) labelText.innerText = 'Verificação concluída!';
+          if (detalheEl) detalheEl.innerText = 'Status de todas as turmas sincronizado com sucesso.';
+          setTimeout(() => {
+            if (checkId === statusCheckCounter && progressBar) {
+              progressBar.style.display = 'none';
+            }
+          }, 2500);
+        } else if (nomeTurmaProcessando) {
+          if (detalheEl) detalheEl.innerText = `Consultando ${nomeTurmaProcessando}...`;
+        }
+      }
+
+      let idx = 0;
+      function verificarProximaTurma() {
+        if (checkId !== statusCheckCounter || state.modo !== 'diario') return;
+        if (idx >= totalTurmas) {
+          atualizarProgressoUI(totalTurmas, null);
+          return;
+        }
+
+        const turmaAtual = turmasAlvo[idx];
+        atualizarProgressoUI(turmasConcluidas, turmaAtual.nome);
+
+        google.script.run
+          .withSuccessHandler(res => {
+            if (checkId !== statusCheckCounter || state.modo !== 'diario') return;
+            const statusRetornado = (res && res.status) ? res.status : 'Pendente';
+            aplicarBadgeTurma(turmaAtual.id, statusRetornado);
+            turmasConcluidas++;
+            idx++;
+            atualizarProgressoUI(turmasConcluidas, idx < totalTurmas ? turmasAlvo[idx].nome : null);
+            verificarProximaTurma();
+          })
+          .withFailureHandler(err => {
+            if (checkId !== statusCheckCounter || state.modo !== 'diario') return;
+            if (err && err.message && err.message.includes('getStatusTurma')) {
+              executarFallbackPainelCompleto();
+              return;
+            }
+            aplicarBadgeTurma(turmaAtual.id, 'Pendente');
+            turmasConcluidas++;
+            idx++;
+            atualizarProgressoUI(turmasConcluidas, idx < totalTurmas ? turmasAlvo[idx].nome : null);
+            verificarProximaTurma();
+          })
+          .getStatusTurma(turmaAtual.id, dataFormatadaLocal, mesExtensoLocal);
+      }
+
+      function executarFallbackPainelCompleto() {
+        google.script.run
+          .withSuccessHandler(turmasStatus => {
+            if (checkId !== statusCheckCounter || state.modo !== 'diario') return;
+            if (Array.isArray(turmasStatus)) {
+              turmasStatus.forEach(t => aplicarBadgeTurma(t.id, t.status));
+            }
+            atualizarProgressoUI(totalTurmas, null);
+          })
+          .withFailureHandler(() => {
+            if (progressBar) progressBar.style.display = 'none';
+          })
+          .getPainelMonitoramento(null, null, dataFormatadaLocal, mesExtensoLocal, {});
+      }
+
+      verificarProximaTurma();
     }
 
     function calcularDatas() {
@@ -3486,49 +3844,131 @@
 
       const turmaSalvaId = state.turmaId;
       const turmaSalvaNome = state.turmaNome;
-      const ehProfessor = state.perfil === 'Professor';
+      const btnSalvar = document.getElementById('btn-salvar');
+      const totalAlunos = (dadosChamadaGeral || []).filter(a => !a.inativo).length;
 
-      if (ehProfessor) {
-        // Marca a turma com status "Realizada" imediatamente na interface e na sessão
-        statusOtimistaTurmas[turmaSalvaId] = 'Realizada';
-        const divCard = document.getElementById(`status-card-${turmaSalvaId}`);
-        if (divCard) {
-          divCard.innerHTML = '<span class="badge-sucesso-card">Realizada</span>';
-        }
-
-        // Feedback imediato para o Professor
-        alteracoesNaoSalvas = false;
-        mostrarModal("CHAMADA LANÇADA!", `A chamada da turma "${turmaSalvaNome}" foi registrada com sucesso!`, () => {
-          resetarUI();
-          // Atualiza os cards imediatamente com o status otimista
-          carregarStatusDosCards();
-        });
-
-        // Envio assíncrono em segundo plano para gravação na planilha
-        google.script.run
-          .withSuccessHandler(res => {
-            console.log("[Chamada em segundo plano salva com sucesso]", res);
-          })
-          .withFailureHandler(err => {
-            console.error("[Erro ao salvar chamada em segundo plano]", err);
-            mostrarModal("AVISO DE SINCRONIZAÇÃO", "Houve uma instabilidade ao sincronizar a chamada com a planilha: " + (err.message || err));
-          })
-          .salvarRegistroChamada(turmaSalvaId, mesExtenso, dataFormatada, dadosChamadaGeral);
-      } else {
-        document.getElementById('btn-salvar').disabled = true;
-        mostrarResultado('loading-inline');
-        google.script.run
-          .withSuccessHandler(res => {
-            document.getElementById('btn-salvar').disabled = false;
-            statusOtimistaTurmas[turmaSalvaId] = 'Realizada';
-            mostrarModal("SUCESSO!", res, () => { resetarUI(); carregarStatusDosCards(); }); 
-          })
-          .withFailureHandler(err => {
-            document.getElementById('btn-salvar').disabled = false;
-            mostrarModal("ERRO", "Falha ao salvar chamada: " + (err.message || err));
-          })
-          .salvarRegistroChamada(turmaSalvaId, mesExtenso, dataFormatada, dadosChamadaGeral);
+      // 1. Bloqueia o botão de salvar na tela com spinner
+      if (btnSalvar) {
+        btnSalvar.disabled = true;
+        btnSalvar.innerHTML = '<span class="icon-spin" style="display:inline-block; vertical-align:middle; margin-right:6px;"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#icon-sync"></use></svg></span> SALVANDO NA PLANILHA...';
       }
+
+      // 2. Proteção contra fechamento do navegador ou saída acidental
+      const avisoSaidaGravando = function(e) {
+        e.preventDefault();
+        e.returnValue = 'A chamada da turma "' + turmaSalvaNome + '" está sendo gravada na planilha. Se você sair agora, os dados podem não ser salvos.';
+        return e.returnValue;
+      };
+      window.addEventListener('beforeunload', avisoSaidaGravando);
+
+      // 3. Abre o modal com o carregamento real do salvamento
+      const modalSalvando = document.getElementById('modal-salvando-chamada');
+      const barraProgresso = document.getElementById('salvando-barra-progresso');
+      const spanPercentual = document.getElementById('salvando-percentual');
+      const spanEtapa = document.getElementById('salvando-status-etapa');
+      const iconSpinner = document.getElementById('salvando-icon-spinner');
+      const iconCheck = document.getElementById('salvando-icon-check');
+      const tituloModal = document.getElementById('salvando-titulo');
+      const subtituloModal = document.getElementById('salvando-subtitulo');
+      const turmaNomeDisplay = document.getElementById('salvando-turma-nome');
+      const dataChamadaDisplay = document.getElementById('salvando-data-chamada');
+      const qtdEstudantesDisplay = document.getElementById('salvando-qtd-estudantes');
+
+      if (turmaNomeDisplay) turmaNomeDisplay.innerText = turmaSalvaNome;
+      if (dataChamadaDisplay) dataChamadaDisplay.innerText = dataCurtaLocal + ' • ' + mesExtenso;
+      if (qtdEstudantesDisplay) qtdEstudantesDisplay.innerText = totalAlunos + ' estudantes ativos na lista de chamada';
+
+      if (iconSpinner) iconSpinner.style.display = 'block';
+      if (iconCheck) iconCheck.style.display = 'none';
+      if (tituloModal) {
+        tituloModal.innerText = 'Gravando Chamada na Planilha';
+        tituloModal.style.color = 'var(--primary-text)';
+      }
+      if (subtituloModal) subtituloModal.innerText = 'Sincronizando frequências com o Google Sheets...';
+
+      let progressoAtual = 10;
+      if (barraProgresso) barraProgresso.style.width = '10%';
+      if (spanPercentual) spanPercentual.innerText = '10%';
+      if (spanEtapa) spanEtapa.innerText = 'Validando presenças e faltas da turma...';
+
+      if (modalSalvando) {
+        modalSalvando.classList.add('active');
+      }
+
+      // Timer dinâmico de etapas reais enquanto a planilha processa a gravação
+      const etapas = [
+        { pct: 28, texto: 'Conectando à planilha da turma no Google Drive...' },
+        { pct: 54, texto: 'Localizando a guia do mês de ' + mesExtenso + ' e coluna ' + dataCurtaLocal + '...' },
+        { pct: 78, texto: 'Registrando presenças, faltas e atestados dos estudantes...' },
+        { pct: 92, texto: 'Marcando status como realizada e confirmando com a planilha...' }
+      ];
+      let etapaIdx = 0;
+      const intervalProgresso = setInterval(() => {
+        if (etapaIdx < etapas.length) {
+          progressoAtual = etapas[etapaIdx].pct;
+          if (barraProgresso) barraProgresso.style.width = progressoAtual + '%';
+          if (spanPercentual) spanPercentual.innerText = progressoAtual + '%';
+          if (spanEtapa) spanEtapa.innerText = etapas[etapaIdx].texto;
+          etapaIdx++;
+        }
+      }, 340);
+
+      // 4. Executa a gravação oficial via Google Apps Script
+      google.script.run
+        .withSuccessHandler(res => {
+          clearInterval(intervalProgresso);
+          window.removeEventListener('beforeunload', avisoSaidaGravando);
+
+          // 100% de conclusão visual
+          if (barraProgresso) barraProgresso.style.width = '100%';
+          if (spanPercentual) spanPercentual.innerText = '100%';
+          if (spanEtapa) spanEtapa.innerText = 'Gravação confirmada com sucesso no Google Sheets!';
+          if (iconSpinner) iconSpinner.style.display = 'none';
+          if (iconCheck) iconCheck.style.display = 'block';
+          if (tituloModal) {
+            tituloModal.innerText = 'Chamada Gravada na Planilha!';
+            tituloModal.style.color = '#10b981';
+          }
+          if (subtituloModal) {
+            subtituloModal.innerText = 'Todas as presenças e faltas foram salvas e confirmadas.';
+          }
+
+          // Atualiza o estado da aplicação
+          alteracoesNaoSalvas = false;
+          statusOtimistaTurmas[turmaSalvaId] = 'Realizada';
+          const divCard = document.getElementById(`status-card-${turmaSalvaId}`);
+          if (divCard) {
+            divCard.innerHTML = '<span class="badge-sucesso-card">Realizada</span>';
+          }
+
+          // Pausa suave de 750ms para que o usuário visualize a confirmação com 100% e o ícone de sucesso
+          setTimeout(() => {
+            if (modalSalvando) modalSalvando.classList.remove('active');
+            if (btnSalvar) {
+              btnSalvar.disabled = false;
+              btnSalvar.innerHTML = 'SALVAR CHAMADA';
+            }
+
+            mostrarModal("CHAMADA GRAVADA NA PLANILHA!", `A chamada da turma "${turmaSalvaNome}" na data ${dataCurtaLocal} foi gravada e confirmada com sucesso na planilha oficial!`, () => {
+              resetarUI();
+              carregarStatusDosCards();
+            });
+          }, 750);
+        })
+        .withFailureHandler(err => {
+          clearInterval(intervalProgresso);
+          window.removeEventListener('beforeunload', avisoSaidaGravando);
+
+          if (modalSalvando) modalSalvando.classList.remove('active');
+          if (btnSalvar) {
+            btnSalvar.disabled = false;
+            btnSalvar.innerHTML = 'SALVAR CHAMADA';
+          }
+
+          alteracoesNaoSalvas = true;
+          mostrarModal("ERRO NA GRAVAÇÃO", "Atenção: A chamada NÃO pôde ser gravada na planilha devido a uma instabilidade de conexão: " + (err.message || err) + "\n\nSeus lançamentos foram mantidos intactos nesta tela para você tentar novamente clicando em SALVAR CHAMADA.");
+        })
+        .salvarRegistroChamada(turmaSalvaId, mesExtenso, dataFormatada, dadosChamadaGeral);
     }
 
     function abrirRelatorioTurma(turmaId) {
