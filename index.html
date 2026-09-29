@@ -1661,7 +1661,20 @@
     const ROTULO_IDENTIFICADOR = "SIMADE";
     const SENHA_PADRAO_ACESSO = "portomario26";
 
-    // Catálogo de turmas e planilhas configuradas para remanejamento geral (entre turnos e unidades)
+    // Catálogo de turmas do diário local (utilizado como base inicial personalizável pelo usuário)
+    const TURMAS_CONFIG = [
+      { id: "1-REG-01-MANHA-S", nome: "1º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1i4YhQ3zgUweRTlIWGcY5lLqIZGvVaen6dPt7D0Ro1fs" },
+      { id: "1-REG-02-MANHA-S", nome: "1º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1w64OmLVfSPPVyYElKc8rdAJwshePqm_d96zz1fZFOjw" },
+      { id: "2-REG-01-MANHA-S", nome: "2º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1MmJ7hSpo_T9phHWecrw0YOKTSV65IzOo70IOlnDo0mU" },
+      { id: "2-REG-02-MANHA-S", nome: "2º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1qxsunmYueNxmBu3JHJzbzcA_OVJ3VcZQQXHD4vR_36A" },
+      { id: "3-REG-01-MANHA-S", nome: "3º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1O2hREVvwEFExzX7D5bGOK3F6dtR3r5cFMoID281Lyc0" },
+      { id: "3-REG-02-MANHA-S", nome: "3º REG - 02", turno: "Manhã", unidade: "Sede", plan: "1uKW_viRK3X9drJef19auOA7EIEcPgC0hrqqkmhUV12E" }
+    ];
+    // Alias para compatibilidade
+    const TURMAS_CONFIG_DIARIO_LOCAL = TURMAS_CONFIG;
+
+    // Catálogo de turmas e planilhas configuradas para remanejamento geral (outros turnos/unidades - exclusivo do modal de remanejamento)
+    let catalogoRemanejamentoRemoto = [];
     const TURMAS_CONFIG_REMANEJAMENTO = [
       { id: "1-REG-01-MANHA-S", nome: "1º REG - 01", turno: "Manhã", unidade: "Sede", plan: "1sa87ELHFQFYYtoxN2jvYphtNEFGRVRtbpoyx9AiuvnY" },
       { id: "1-REG-02-MANHA-S", nome: "1º REG - 02", turno: "Manhã", unidade: "Sede", plan: "14xtJO7ZOWBBh4nhqVkc77Qo8nBkMNl2nF2HuiMNJaSs" },
@@ -1739,17 +1752,29 @@
     ];
 
     function obterRespostaSimuladaGas(prop, args) {
-      const catalogo = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
+      const catalogoRemanejar = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
         ? TURMAS_CONFIG_REMANEJAMENTO
         : [];
       
-      if (prop === 'getTurmasDisponiveis' || prop === 'getTurmasRemanejamento') {
-        return catalogo;
+      const catalogoLocal = (typeof TURMAS_CONFIG !== 'undefined' && Array.isArray(TURMAS_CONFIG))
+        ? TURMAS_CONFIG
+        : ((typeof TURMAS_CONFIG_DIARIO_LOCAL !== 'undefined' && Array.isArray(TURMAS_CONFIG_DIARIO_LOCAL))
+            ? TURMAS_CONFIG_DIARIO_LOCAL
+            : []);
+
+      const catalogoGeral = [...catalogoLocal, ...catalogoRemanejar];
+
+      if (prop === 'getTurmasDisponiveis') {
+        return catalogoLocal;
+      }
+
+      if (prop === 'getTurmasRemanejamento') {
+        return catalogoRemanejar;
       }
       
       if (prop === 'getDadosChamada') {
         const turmaId = args[0] || '';
-        const tObj = catalogo.find(t => t.id === turmaId) || { nome: turmaId };
+        const tObj = catalogoGeral.find(t => t.id === turmaId) || (dbTurmas || []).find(t => t.id === turmaId) || { nome: turmaId };
         const dataChamada = args[2] || '';
         const dataCurta = dataChamada ? dataChamada.substring(0, 5).trim() : "15/08";
         const datasPadrao = ["01/08", "05/08", "08/08", "12/08", "15/08", "19/08", "22/08", "26/08", "28/08"];
@@ -2045,20 +2070,30 @@
       try { history.replaceState({ view: 'login' }, '', '#login'); } catch(e){}
       viewAtual = 'login';
 
-      const catalogoInicial = (typeof TURMAS_CONFIG_REMANEJAMENTO !== 'undefined' && Array.isArray(TURMAS_CONFIG_REMANEJAMENTO))
-        ? [...TURMAS_CONFIG_REMANEJAMENTO]
-        : [];
+      const catalogoInicial = (typeof TURMAS_CONFIG !== 'undefined' && Array.isArray(TURMAS_CONFIG))
+        ? [...TURMAS_CONFIG]
+        : ((typeof TURMAS_CONFIG_DIARIO_LOCAL !== 'undefined' && Array.isArray(TURMAS_CONFIG_DIARIO_LOCAL))
+            ? [...TURMAS_CONFIG_DIARIO_LOCAL]
+            : []);
       if (catalogoInicial.length > 0) {
         dbTurmas = catalogoInicial;
         atualizarInterface();
       }
 
+      // Busca do Google Apps Script as turmas do diário local configuradas pelo usuário em DB_TURMAS
       google.script.run.withSuccessHandler(res => { 
         if (res && Array.isArray(res) && res.length > 0) {
           dbTurmas = res; 
           atualizarInterface();
         }
       }).getTurmasDisponiveis();
+
+      // Carrega turmas para remanejamento geral (outros turnos/unidades) em segundo plano para o modal
+      google.script.run.withSuccessHandler(res => {
+        if (res && Array.isArray(res) && res.length > 0) {
+          catalogoRemanejamentoRemoto = res;
+        }
+      }).getTurmasRemanejamento();
       
       const hoje = new Date();
       const tzOffset = hoje.getTimezoneOffset() * 60000;
@@ -2372,6 +2407,24 @@
         ? [...TURMAS_CONFIG_REMANEJAMENTO]
         : [];
       
+      if (Array.isArray(catalogoRemanejamentoRemoto) && catalogoRemanejamentoRemoto.length > 0) {
+        catalogoRemanejamentoRemoto.forEach(t => {
+          if (!listaBase.some(item => item.id === t.id)) {
+            listaBase.push(t);
+          }
+        });
+      }
+
+      const turmasLocais = (typeof TURMAS_CONFIG_DIARIO_LOCAL !== 'undefined' && Array.isArray(TURMAS_CONFIG_DIARIO_LOCAL))
+        ? TURMAS_CONFIG_DIARIO_LOCAL
+        : [];
+
+      turmasLocais.forEach(t => {
+        if (!listaBase.some(item => item.id === t.id)) {
+          listaBase.push(t);
+        }
+      });
+
       (dbTurmas || []).forEach(t => {
         if (!listaBase.some(item => item.id === t.id)) {
           listaBase.push(t);
